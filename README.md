@@ -30,16 +30,17 @@ Dieses Modul wurde aufgezeichnet und ist im YouTube-Kanal der Office-Entwicklung
 
 |        Rollen         |                            Autor (e)                             |
 | -------------------- | ---------------------------------------------------------------- |
-| Übungs Handbücher/-Folien | Andrew Connell (Microsoft MVP, Voitanos) @andrewconnell          |
-| QA                   | Julie Turner (Microsoft MVP, Sympraxis Consulting) @juliemturner |
-| Sponsor/Support    | Yina Arenas (Microsoft) @yinaa                                   |
+| Übungs Handbücher/-Folien | Andrew Connell (Microsoft MVP, Voitanos)@andrewconnell          |
+| QA                   | Julie Turner (Microsoft MVP, Sympraxis Consulting)@juliemturner |
+| Sponsor/Support    | Yina Arenas (Microsoft)@yinaa                                   |
 
 ## <a name="version-history"></a>Versionsverlauf
 
 | Version |        Datum        |                       Kommentare                       |
 | ------- | ------------------ | ---------------------------------------------------- |
+| 1.7     | 4. April 2018      | 2019Q3-Inhaltsaktualisierung                               |
 | 1.6     | 18. Dezember 2018  | 2019Q2-Inhaltsaktualisierung                               |
-| 1.5     | 27. November 2018  | Onboarding zu docs.microsoft.com/graph                |
+| 1,5     | 27. November 2018  | Onboarding zu docs.microsoft.com/graph                |
 | 1.4     | 12. September 2018 | 2019Q1-Inhaltsaktualisierung                               |
 | 1.3     | 24. August 2018    | Überarbeitete Module für Konsistenz mit anderen Schulungen. |
 | 1.2     | 28. Juni 2018      | Screencast HinzugeFügt.                                    |

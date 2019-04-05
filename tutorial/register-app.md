@@ -1,44 +1,40 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In dieser Übung erstellen Sie eine neue Azure AD-Webanwendungs Registrierung mithilfe des Application Registry Portal (ARP).
-
-1. Öffnen Sie einen Browser, und navigieren Sie zum [Anwendungs Registrierungs Portal](https://apps.dev.microsoft.com). Melden Sie sich über ein **persönliches Konto** (aka: Microsoft-Konto) oder ein Geschäfts- **oder Schulkonto**an.
-
-1. Wählen Sie oben auf der Seite **eine APP hinzufügen** aus.
-
-    > [!NOTE]
-    > Wenn auf der Seite mehr als eine Schaltfläche **app hinzufügen** angezeigt wird, wählen Sie diejenige aus, die der Liste **konvergierter apps** entspricht.
-
-1. Legen Sie auf der Seite **Anwendung registrieren** den **anwendungsnamen** auf **ASP.NET Graph-Lernprogramm** fest, und wählen Sie **Erstellen**aus.
-
-    ![Screenshot des Erstellens einer neuen app in der APP-Registrierungs Portal-Website](./images/arp-create-app-01.png)
-
-1. Kopieren Sie auf der Seite **ASP.NET Graph Tutorial-Registrierung** im Abschnitt **Eigenschaften** die **Anwendungs-ID** , so wie Sie Sie später benötigen.
-
-    ![Screenshot der neu erstellten Anwendungs-ID](./images/arp-create-app-02.png)
-
-1. Scrollen Sie nach unten zum Abschnitt **Anwendungs Geheimnisse** .
-
-    1. Wählen Sie **Neues Kennwort generieren**aus.
-    1. Kopieren Sie im Dialogfeld **Neues Kennwort generiert** den Inhalt des Felds, so wie Sie es später benötigen.
-
-        > **Wichtig:** Dieses Kennwort wird nie wieder angezeigt, stellen Sie daher sicher, dass Sie es jetzt kopieren.
-
-    ![Screenshot des Kennworts der neu erstellten Anwendung](./images/arp-create-app-03.png)
+In dieser Übung erstellen Sie eine neue Azure AD-Webanwendungs Registrierung mithilfe des Azure Active Directory Admin Center.
 
 1. Bestimmen Sie die URL Ihrer ASP.NET-app. Wählen Sie im projektMappen-Explorer von Visual Studio das Projekt **Graph-Tutorial** aus. Suchen Sie im Fenster **Eigenschaften** den Wert der **URL**. Kopieren Sie diesen Wert.
 
     ![Screenshot des Eigenschaftenfensters von Visual Studio](./images/vs-project-url.png)
 
-1. Scrollen Sie nach unten zum Abschnitt **Plattformen** .
+1. Öffnen Sie einen Browser, und navigieren Sie zum [Azure Active Directory Admin Center](https://aad.portal.azure.com). Melden Sie sich über ein **persönliches Konto** (aka: Microsoft-Konto) oder ein Geschäfts- **oder Schulkonto**an.
 
-    1. Wählen Sie **Plattform hinzufügen**aus.
-    1. Wählen Sie im Dialogfeld **Plattform hinzufügen** die Option **Web**aus.
+1. Wählen Sie **Azure Active Directory** in der linken Navigationsleiste aus, und wählen Sie dann **App-Registrierungen (Vorschau)** unter **Manage**aus.
 
-        ![Screenshot Erstellen einer Plattform für die APP](./images/arp-create-app-04.png)
+    ![Screenshot der APP-Registrierungen ](./images/aad-portal-app-registrations.png)
 
-    1. Geben Sie **** im Feld Webplattform die URL ein, die Sie aus den Eigenschaften des Visual Studio-Projekts für die Umleitungs- **URLs**kopiert haben.
+1. Wählen Sie **neue Registrierung**aus. Legen Sie auf der Seite **Anwendung registrieren** die Werte wie folgt fest.
 
-        ![Screenshot der neu hinzugefügten Webplattform für die Anwendung](./images/arp-create-app-05.png)
+    - Legen **** Sie Name `ASP.NET Graph Tutorial`auf fest.
+    - Legen Sie **unterstützte Kontotypen** auf **Konten in einem beliebigen Organisations Verzeichnis und persönlichen Microsoft-Konten**fest.
+    - Legen Sie unter umLeitungs- **URI**die erste Dropdown `Web` Liste auf fest, und legen Sie den Wert auf die ASP.net-App-URL fest, die Sie in Schritt 1 kopiert haben.
 
-1. Scrollen Sie zum unteren Rand der Seite, und wählen Sie **Speichern**aus.
+    ![Screenshot der Seite "Registrieren einer Anwendung"](./images/aad-register-an-app.png)
+
+1. Wählen Sie **registrieren**aus. Kopieren Sie auf der Seite **ASP.NET Graph Tutorial** den Wert der **Anwendungs-ID (Client)** , und speichern Sie ihn, dann benötigen Sie ihn im nächsten Schritt.
+
+    ![Screenshot der Anwendungs-ID der neuen App-Registrierung](./images/aad-application-id.png)
+
+1. Wählen Sie unter **Manage**die Option **Authentication** aus. Suchen Sie den **impliziten Grant** -Abschnitt, und aktivieren Sie **ID-Token**. Wählen Sie **Speichern** aus.
+
+    ![Screenshot des impliziten Grant-Abschnitts](./images/aad-implicit-grant.png)
+
+1. Wählen Sie unter **Manage**die Option **Certificates & Secrets** aus. Klicken Sie auf die Schaltfläche **neuen geheimen Client Schlüssel** . Geben Sie einen Wert in **Description** ein, und wählen Sie eine der Optionen für **Expires** und wählen Sie **Hinzufügen**aus.
+
+    ![Screenshot des Dialogfelds zum Hinzufügen eines geheimen Clients](./images/aad-new-client-secret.png)
+
+1. Kopieren Sie den Client geheimen Wert, bevor Sie diese Seite verlassen. Sie benötigen Sie im nächsten Schritt.
+
+    > [!IMPORTANT]
+    > Dieser geheime Client Schlüssel wird nie wieder angezeigt, stellen Sie daher sicher, dass Sie ihn jetzt kopieren.
+
+    ![Screenshot des neu hinzugefügten geheimen Clients](./images/aad-copy-client-secret.png)

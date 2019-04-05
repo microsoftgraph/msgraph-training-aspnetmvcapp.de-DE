@@ -13,7 +13,7 @@ Klicken Sie im projektMappen-Explorer mit der rechten Maustaste auf das **Graph-
 </appSettings>
 ```
 
-Ersetzen `YOUR_APP_ID_HERE` Sie durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal, `YOUR_APP_PASSWORD_HERE` und ersetzen Sie es durch das von Ihnen generierte Kennwort. Achten Sie auch darauf, den `PORT` Wert für die `ida:RedirectUri` an die URL der Anwendung anzupassen.
+Ersetzen `YOUR_APP_ID_HERE` Sie durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal, `YOUR_APP_PASSWORD_HERE` und ersetzen Sie durch den von Ihnen generierten Client Schlüssel. Wenn Ihr geheimer Client-Schlüssel ein`&`kaufmännisches und-Zeichen enthält () `&amp;` , `PrivateSettings.config`müssen Sie diese durch in ersetzen. Achten Sie auch darauf, den `PORT` Wert für die `ida:RedirectUri` an die URL der Anwendung anzupassen.
 
 > [!IMPORTANT]
 > Wenn Sie die Quellcodeverwaltung wie git verwenden, wäre es jetzt ein guter Zeitpunkt, um die `PrivateSettings.config` Datei aus der Quellcodeverwaltung auszuschließen, um versehentlich Ihre APP-ID und Ihr Kennwort zu verlieren.
@@ -342,11 +342,6 @@ namespace graph_tutorial.TokenStorage
         private void Persist()
         {
             sessionLock.EnterReadLock();
-
-            // Optimistically set HasStateChanged to false.
-            // We need to do it early to avoid losing changes made by a concurrent thread.
-            tokenCache.HasStateChanged = false;
-
             httpContext.Session[cacheId] = tokenCache.Serialize();
             sessionLock.ExitReadLock();
         }
@@ -362,7 +357,7 @@ namespace graph_tutorial.TokenStorage
         private void AfterAccessNotification(TokenCacheNotificationArgs args)
         {
             // if the access operation resulted in a cache update
-            if (tokenCache.HasStateChanged)
+            if (args.HasStateChanged)
             {
                 Persist();
             }
