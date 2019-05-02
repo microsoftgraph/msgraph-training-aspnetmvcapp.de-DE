@@ -73,7 +73,7 @@ private static GraphServiceClient GetAuthenticatedClient()
   - Die `Select` Funktion schränkt die für jedes Ereignis zurückgegebenen Felder auf diejenigen ein, die die Ansicht tatsächlich verwendet.
   - Die `OrderBy` Funktion sortiert die Ergebnisse nach dem Datum und der Uhrzeit, zu denen Sie erstellt wurden, wobei das neueste Element zuerst angezeigt wird.
 
-Erstellen Sie nun einen Controller für die Kalenderansichten. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **_GT_ Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `CalendarController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
+Erstellen Sie nun einen Controller für die Kalenderansichten. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **> Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `CalendarController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
 
 ```cs
 using graph_tutorial.Helpers;
@@ -99,7 +99,7 @@ Jetzt können Sie dies testen. Starten Sie die APP, melden Sie sich an, und klic
 
 ## <a name="display-the-results"></a>Anzeigen der Ergebnisse
 
-Jetzt können Sie eine Ansicht hinzufügen, um die Ergebnisse benutzerfreundlicher anzuzeigen. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **views/Calendar** , und wählen Sie **_GT_ Ansicht hinzufügen**.... Benennen Sie die `Index` Ansicht, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
+Jetzt können Sie eine Ansicht hinzufügen, um die Ergebnisse benutzerfreundlicher anzuzeigen. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **views/Calendar** , und wählen Sie **> Ansicht hinzufügen**.... Benennen Sie die `Index` Ansicht, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
 
 ```html
 @model IEnumerable<Microsoft.Graph.Event>

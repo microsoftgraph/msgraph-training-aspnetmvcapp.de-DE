@@ -43,7 +43,7 @@ Hierbei handelt es sich um das Modul, die Bibliothek, die die Formatvorlagen fü
 
 Einige der wichtigsten Punkte sind:
 
-- Positions Elemente, die Sie in Ihrem ursprünglichen DOM-Kontext halten (nicht mit Ihrem DOM!);
+- Positions Elemente, die Sie in Ihrem ursprünglichen Dom-Kontext halten (nicht mit Ihrem DOM!);
 - Ermöglicht den Export der berechneten Informationen, um Sie in Reaktions-und andere Ansichts Bibliotheken zu integrieren;
 - Unterstützt Schatten-DOM-Elemente;
 - Vollständig anpassbar dank der Modifiers-basierten Struktur;
@@ -93,7 +93,7 @@ Weitere Informationen finden [Sie im zugehörigen Thema](https://github.com/FezV
 Popper. js ist derzeit mit 3 Zielen im Kopf: UMD, ESM und ESNext ausgeliefert.
 
 - UMD-Universal Modul Definition: AMD, RequireJS und Globals;
-- ESM-ES-Module: für WebPack/Rollup oder Browser, der die Spezifikation unterstützt;
+- ESM-es-Module: für WebPack/Rollup oder Browser, der die Spezifikation unterstützt;
 - ESNext: verfügbar in `dist/`, kann mit WebPack verwendet werden und `babel-preset-env`;
 
 Stellen Sie sicher, dass Sie die richtige für Ihre Anforderungen verwenden. Wenn Sie es mit einem `<script>` Tag importieren möchten, verwenden Sie UMD.
@@ -141,7 +141,7 @@ Ein Modifizierer ist eine Funktion, die aufgerufen wird, wenn Popper. js die Pos
 Weitere Informationen zum Erstellen eines Modifizierers finden [Sie in der Dokumentation](docs/_includes/popper-documentation.md#modifiers--object) zur Modifiers.
 
 
-### <a name="react-vuejs-angular-angularjs-emberjs-etc-integration"></a>ReAgiere, vue. js, eckig, AngularJS, glut. js (etc...) Integration
+### <a name="react-vuejs-angular-angularjs-emberjs-etc-integration"></a>Reagiere, vue. js, eckig, AngularJS, glut. js (etc...) Integration
 
 Die Integration von Drittanbieterbibliotheken in reagieren oder anderen Bibliotheken kann schmerzhaft sein, da Sie in der Regel das DOM ändern und die Bibliotheken verrückt fahren.  
 Popper. js schränkt alle seine DOM-Modifikationen `applyStyle` innerhalb des Modifizierers ein, Sie können es einfach deaktivieren und die Popper-Koordinaten mithilfe Ihrer bevorzugten Bibliothek manuell anwenden.  
@@ -180,7 +180,7 @@ Wenn Sie Fragen haben, können Sie das Problem in diesem Fall kommentieren.
 
 ### <a name="performances"></a>Leistungen
 
-Popper. js ist sehr leistungsfähig. In der Regel dauert es 0,5 Millisekunden, bis die Position eines Popper berechnet wird (auf einem iMac mit Intel Core i5 mit 3,5 G GHz).  
+Popper. js ist sehr leistungsfähig. In der Regel dauert es 0,5 Millisekunden, bis die Position eines Popper berechnet wird (auf einem iMac mit Intel Core i5 mit 3,5 g GHz).  
 Dies führt dazu, dass keine [Jank](https://www.chromium.org/developers/how-tos/trace-event-profiling-tool/anatomy-of-jank)verursacht wird, was zu einer reibungslosen Benutzerfreundlichkeit führen kann.
 
 ## <a name="notes"></a>Hinweise

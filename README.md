@@ -30,9 +30,9 @@ Dieses Modul wurde aufgezeichnet und ist im YouTube-Kanal der Office-Entwicklung
 
 |        Rollen         |                            Autor (e)                             |
 | -------------------- | ---------------------------------------------------------------- |
-| Übungs Handbücher/-Folien | Andrew Connell (Microsoft MVP, Voitanos)@andrewconnell          |
-| QA                   | Julie Turner (Microsoft MVP, Sympraxis Consulting)@juliemturner |
-| Sponsor/Support    | Yina Arenas (Microsoft)@yinaa                                   |
+| Übungs Handbücher/-Folien | Andrew Connell (Microsoft MVP, Voitanos) @andrewconnell          |
+| QA                   | Julie Turner (Microsoft MVP, Sympraxis Consulting) @juliemturner |
+| Sponsor/Support    | Yina Arenas (Microsoft) @yinaa                                   |
 
 ## <a name="version-history"></a>Versionsverlauf
 
@@ -40,15 +40,15 @@ Dieses Modul wurde aufgezeichnet und ist im YouTube-Kanal der Office-Entwicklung
 | ------- | ------------------ | ---------------------------------------------------- |
 | 1.7     | 4. April 2018      | 2019Q3-Inhaltsaktualisierung                               |
 | 1.6     | 18. Dezember 2018  | 2019Q2-Inhaltsaktualisierung                               |
-| 1,5     | 27. November 2018  | Onboarding zu docs.microsoft.com/graph                |
+| 1.5     | 27. November 2018  | Onboarding zu docs.Microsoft.com/Graph                |
 | 1.4     | 12. September 2018 | 2019Q1-Inhaltsaktualisierung                               |
 | 1.3     | 24. August 2018    | Überarbeitete Module für Konsistenz mit anderen Schulungen. |
-| 1.2     | 28. Juni 2018      | Screencast HinzugeFügt.                                    |
+| 1.2     | 28. Juni 2018      | Screencast hinzugefügt.                                    |
 | 1.1     | 04. Juni 2018      | Mit den neuesten Anweisungen umgeschrieben.                    |
 | 1.0     | ~ 24. November 2017 | Hinzufügen von Microsoft Graph-bezogenen Produkt Ausbrüchen.       |
 
 ## <a name="disclaimer"></a>Verzichtserklärung
 
-**DIESER CODE wird ohne ** Gewähr bereitgestellt, weder ausdrücklich noch implizit, einschließlich impliziter Garantien der Eignung für einen bestimmten Zweck, marktGÄNGIGKEIT oder Nichtverletzung.**
+**Dieser Code wird ohne ** Gewähr bereitgestellt, weder ausdrücklich noch implizit, einschließlich impliziter Garantien der Eignung für einen bestimmten Zweck, MARKTGÄNGIGKEIT oder Nichtverletzung.**
 
 <img src="https://telemetry.sharepointpnp.com/msgraph-training-aspnetmvcapp" />

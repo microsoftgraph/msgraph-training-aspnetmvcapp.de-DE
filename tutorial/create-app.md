@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Öffnen Sie Visual Studio, und wählen Sie **Datei _GT_ neues >-Projekt**aus. Führen Sie im Dialogfeld **Neues Projekt** folgende Aktionen aus:
+Öffnen Sie Visual Studio, und wählen Sie **Datei > neues >-Projekt**aus. Führen Sie im Dialogfeld **Neues Projekt** folgende Aktionen aus:
 
-1. Wählen Sie **Vorlagen _GT_ Visual C# _GT_ Web**aus.
+1. Wählen Sie **Vorlagen > Visual C# > Web**aus.
 1. Wählen Sie **ASP.NET-Webanwendung (.NET Framework)** aus.
 1. Geben Sie **Graph-Tutorial** als Namen für das Projekt ein.
 
@@ -11,19 +11,19 @@
 > [!NOTE]
 > Stellen Sie sicher, dass Sie genau denselben Namen für das Visual Studio-Projekt eingeben, das in diesen Lab-Anweisungen angegeben ist. Der Visual Studio-Projektname wird Teil des Namespaces im Code. Der Code in diesen Anweisungen hängt vom Namespace ab, der dem in diesen Anweisungen angegebenen Visual Studio-Projektnamen entspricht. Wenn Sie einen anderen Projektnamen verwenden, wird der Code nicht kompiliert, es sei denn, Sie passen alle Namespaces so an, dass Sie mit dem Visual Studio-Projektnamen übereinstimmen, den Sie beim Erstellen des Projekts eingeben.
 
-Wählen Sie **OK** aus. Wählen Sie im Dialogfeld **neues ASP.NET-Webanwendungsprojekt** die Option **MVC** (unter **ASP.NET 4.7.2 Templates**) aus, und wählen Sie **OK**aus.
+Wählen Sie **OK** aus. Wählen Sie im Dialogfeld **Neues ASP.NET-Webanwendungsprojekt** die Option **MVC** (unter **ASP.NET 4.7.2 Templates**) aus, und wählen Sie **OK**aus.
 
 Drücken Sie **F5** , oder klicken Sie auf Debuggen **> Start Debugging**. Wenn alles funktioniert, sollte Ihr Standardbrowser eine ASP.NET-Standardseite öffnen und anzeigen.
 
 Bevor Sie fortfahren, aktualisieren `bootstrap` Sie das NuGet-Paket, und installieren Sie einige zusätzliche NuGet-Pakete, die Sie später verwenden werden.
 
-- [Microsoft. Owin. Host. SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) , um die [Owin](http://owin.org/) -schnittstellen in der ASP.NET-Anwendung zu aktivieren.
+- [Microsoft. Owin. Host. SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) , um die [Owin](http://owin.org/) -Schnittstellen in der ASP.NET-Anwendung zu aktivieren.
 - [Microsoft. Owin. Security. OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/) zum Ausführen der OpenID Connect-Authentifizierung mit Azure.
 - [Microsoft. Owin. Security. Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies/) zur Aktivierung der Cookie-basierten Authentifizierung.
 - [Microsoft. Identity. Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) zum Anfordern und Verwalten von Zugriffstoken.
 - [Microsoft. Graph](https://www.nuget.org/packages/Microsoft.Graph/) für Aufrufe von Microsoft Graph.
 
-Wählen Sie **Extras _GT_ NuGet Paket-Manager _GT_ Paket-Manager-Konsole**aus. Geben Sie in der Paket-Manager-Konsole die folgenden Befehle ein.
+Wählen Sie **Extras > NuGet Paket-Manager > Paket-Manager-Konsole**aus. Geben Sie in der Paket-Manager-Konsole die folgenden Befehle ein.
 
 ```Powershell
 Update-Package bootstrap
@@ -34,13 +34,13 @@ Install-Package Microsoft.Identity.Client -Version 2.7.0
 Install-Package Microsoft.Graph -Version 1.11.0
 ```
 
-Erstellen Sie eine grundlegende OWIN-Startklasse. Klicken Sie im Projekt `graph-tutorial` Mappen-Explorer mit der rechten Maustaste auf den Ordner, und wählen Sie **_GT_ neues Element hinzufügen**. Wählen Sie die **OWIN-Startklassen** Vorlage aus, `Startup.cs`nennen Sie die Datei, und wählen Sie **Hinzufügen**aus.
+Erstellen Sie eine grundlegende OWIN-Startklasse. Klicken Sie im Projekt `graph-tutorial` Mappen-Explorer mit der rechten Maustaste auf den Ordner, und wählen Sie **> neues Element hinzufügen**. Wählen Sie die **OWIN-Startklassen** Vorlage aus, `Startup.cs`nennen Sie die Datei, und wählen Sie **Hinzufügen**aus.
 
 ## <a name="design-the-app"></a>Entwerfen der APP
 
 Erstellen Sie zunächst ein einfaches Modell für eine Fehlermeldung. Sie verwenden dieses Modell, um Fehlermeldungen in den Ansichten der APP zu flashen.
 
-Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **_GT_-Klasse hinzufügen**.... Benennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**. Fügen Sie den folgenden Code `Alert.cs`in hinzu.
+Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **>-Klasse hinzufügen**.... Benennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**. Fügen Sie den folgenden Code `Alert.cs`in hinzu.
 
 ```cs
 namespace graph_tutorial.Models
@@ -197,7 +197,7 @@ Aktualisieren Sie nun die Standardseite. Öffnen Sie `Views/Home/index.cshtml` d
 
 Fügen Sie nun eine Hilfsfunktion hinzu, `Alert` um eine zu erstellen und an die Ansicht zu übermitteln. Definieren Sie eine Basis Controllerklasse, um Sie für jeden von uns erstellten Controller problemlos zur Verfügung zu stellen.
 
-Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **_GT_ Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `BaseController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den Inhalt von `BaseController.cs` durch den folgenden Code.
+Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **> Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `BaseController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den Inhalt von `BaseController.cs` durch den folgenden Code.
 
 ```cs
 using graph_tutorial.Models;

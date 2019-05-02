@@ -2,7 +2,7 @@
 
 In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung zur Unterstützung der Authentifizierung mit Azure AD. Dies ist erforderlich, um das erforderliche OAuth-Zugriffstoken für den Aufruf von Microsoft Graph abzurufen. In diesem Schritt integrieren Sie die OWIN-Middleware und die [Microsoft-Authentifizierungsbibliothek](https://www.nuget.org/packages/Microsoft.Identity.Client/) in die Anwendung.
 
-Klicken Sie im projektMappen-Explorer mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt, und wählen Sie **_GT_ neues Element hinzufügen...**. Wählen **** Sie Webkonfigurationsdatei, benennen Sie die `PrivateSettings.config` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
+Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt, und wählen Sie **> neues Element hinzufügen...**. Wählen **** Sie Webkonfigurationsdatei, benennen Sie die `PrivateSettings.config` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
 
 ```xml
 <appSettings>
@@ -170,7 +170,7 @@ public ActionResult Error(string message, string debug)
 }
 ```
 
-Hinzufügen eines Controllers zur Verarbeitung der Anmeldung. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **_GT_ Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `AccountController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der Datei durch den folgenden Code.
+Hinzufügen eines Controllers zur Verarbeitung der Anmeldung. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **> Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `AccountController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Owin.Security;
@@ -215,7 +215,7 @@ Speichern Sie die Änderungen, und starten Sie das Projekt. Klicken Sie auf die 
 
 ### <a name="get-user-details"></a>Benutzer Details abrufen
 
-Erstellen Sie zunächst eine neue Datei für alle Microsoft Graph-Aufrufe. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **_GT_ neuen Ordner hinzufügen**aus. Benennen Sie den `Helpers`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **_GT_-Klasse hinzufügen**.... Benennen Sie die `GraphHelper.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
+Erstellen Sie zunächst eine neue Datei für alle Microsoft Graph-Aufrufe. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **> neuen Ordner hinzufügen**aus. Benennen Sie den `Helpers`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **>-Klasse hinzufügen**.... Benennen Sie die `GraphHelper.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Graph;
@@ -276,7 +276,7 @@ Wenn Sie nun Ihre Änderungen speichern und die app starten, sollte nach der Anm
 
 Da Sie jetzt Tokens abrufen können, ist es an der Zeit, eine Möglichkeit zum Speichern in der APP zu implementieren. Da es sich um eine Beispiel-App handelt, werden die Token in der Sitzung gespeichert. Eine echte APP würde eine zuverlässigere Secure Storage-Lösung wie eine Datenbank verwenden.
 
-Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **_GT_ neuen Ordner hinzufügen**aus. Benennen Sie den `TokenStorage`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **_GT_-Klasse hinzufügen**.... Benennen Sie die `SessionTokenStore.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
+Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **> neuen Ordner hinzufügen**aus. Benennen Sie den `TokenStorage`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **>-Klasse hinzufügen**.... Benennen Sie die `SessionTokenStore.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Identity.Client;
@@ -513,7 +513,7 @@ Starten Sie den Server, und gehen Sie durch den Anmeldeprozess. Sie sollten auf 
 
 Klicken Sie auf den Benutzer Avatar in der oberen rechten Ecke, **** um auf den Link abmelden zuzugreifen. Wenn **** Sie auf Abmelden klicken, wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite.
 
-![Screenshot des Dropdownmenüs mit dem Link "abMelden"](./images/add-aad-auth-02.png)
+![Screenshot des Dropdownmenüs mit dem Link "Abmelden"](./images/add-aad-auth-02.png)
 
 ## <a name="refreshing-tokens"></a>Aktualisieren von Token
 
