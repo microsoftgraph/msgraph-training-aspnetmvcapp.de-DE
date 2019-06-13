@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In dieser Demo werden Sie Microsoft Graph in die Anwendung integrieren. Für diese Anwendung verwenden Sie die [Microsoft Graph-Client Bibliothek für .net](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Aufrufe von Microsoft Graph zu tätigen.
+In dieser Demo wird das Microsoft Graph in die Anwendung integriert. Für diese Anwendung verwenden Sie die [Microsoft Graph-Clientbibliothek für .net](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Anrufe an Microsoft Graph zu tätigen.
 
 ## <a name="get-calendar-events-from-outlook"></a>Abrufen von Kalenderereignissen aus Outlook
 
@@ -43,21 +43,22 @@ private static GraphServiceClient GetAuthenticatedClient()
         new DelegateAuthenticationProvider(
             async (requestMessage) =>
             {
-                // Get the signed in user's id and create a token cache
-                string signedInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
-                SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId,
-                    new HttpContextWrapper(HttpContext.Current));
+                var idClient = ConfidentialClientApplicationBuilder.Create(appId)
+                    .WithRedirectUri(redirectUri)
+                    .WithClientSecret(appSecret)
+                    .Build();
 
-                var idClient = new ConfidentialClientApplication(
-                    appId, redirectUri, new ClientCredential(appSecret),
-                    tokenStore.GetMsalCacheInstance(), null);
+                string signedInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var tokenStore = new SessionTokenStore(signedInUserId, HttpContext.Current);
+                tokenStore.Initialize(idClient.UserTokenCache);
 
                 var accounts = await idClient.GetAccountsAsync();
 
                 // By calling this here, the token can be refreshed
                 // if it's expired right before the Graph call is made
-                var result = await idClient.AcquireTokenSilentAsync(
-                    graphScopes.Split(' '), accounts.FirstOrDefault());
+                var scopes = graphScopes.Split(' ');
+                var result = await idClient.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                    .ExecuteAsync();
 
                 requestMessage.Headers.Authorization =
                     new AuthenticationHeaderValue("Bearer", result.AccessToken);
@@ -65,17 +66,18 @@ private static GraphServiceClient GetAuthenticatedClient()
 }
 ```
 
-Überlegen Sie sich, was dieser Code tut.
+Überprüfen Sie, was dieser Code tut.
 
-- Die `GetAuthenticatedClient` Funktion initialisiert eine `GraphServiceClient` mit einem Authentifizierungsanbieter, `AcquireTokenSilentAsync`der aufruft.
+- Die `GetAuthenticatedClient` Funktion initialisiert a `GraphServiceClient` mit einem Authentifizierungsanbieter, `AcquireTokenSilent`der ruft.
 - In der `GetEventsAsync` -Funktion:
-  - Die URL, die aufgerufen wird, `/v1.0/me/events`lautet.
-  - Die `Select` Funktion schränkt die für jedes Ereignis zurückgegebenen Felder auf diejenigen ein, die die Ansicht tatsächlich verwendet.
-  - Die `OrderBy` Funktion sortiert die Ergebnisse nach dem Datum und der Uhrzeit, zu denen Sie erstellt wurden, wobei das neueste Element zuerst angezeigt wird.
+  - Die URL, die aufgerufen wird `/v1.0/me/events`.
+  - Die `Select` -Funktion schränkt die für die einzelnen Ereignisse zurückgegebenen Felder auf genau diejenigen ein, die die Ansicht tatsächlich verwendet wird.
+  - Die `OrderBy` -Funktion sortiert die Ergebnisse nach dem Datum und der Uhrzeit, zu der Sie erstellt wurden, wobei das letzte Element zuerst angezeigt wird.
 
-Erstellen Sie nun einen Controller für die Kalenderansichten. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **> Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `CalendarController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
+Erstellen Sie nun einen Controller für die Kalenderansichten. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **#a0 Controller hinzufügen**aus.... Wählen Sie **MVC 5 Controller – leer** und dann **Hinzufügen**aus. Nennen Sie den `CalendarController` Controller, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
 
 ```cs
+using System;
 using graph_tutorial.Helpers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -89,17 +91,27 @@ namespace graph_tutorial.Controllers
         public async Task<ActionResult> Index()
         {
             var events = await GraphHelper.GetEventsAsync();
+
+            // Change start and end dates from UTC to local time
+            foreach (var ev in events)
+            {
+                ev.Start.DateTime = DateTime.Parse(ev.Start.DateTime).ToLocalTime().ToString();
+                ev.Start.TimeZone = TimeZoneInfo.Local.Id;
+                ev.End.DateTime = DateTime.Parse(ev.End.DateTime).ToLocalTime().ToString();
+                ev.End.TimeZone = TimeZoneInfo.Local.Id;
+            }
+
             return Json(events, JsonRequestBehavior.AllowGet);
         }
     }
 }
 ```
 
-Jetzt können Sie dies testen. Starten Sie die APP, melden Sie sich an, und klicken Sie in der Navigationsleiste auf den Link **Kalender** . Wenn alles funktioniert, sollte ein JSON-Dump von Ereignissen im Kalender des Benutzers angezeigt werden.
+Nun können Sie dies testen. Starten Sie die APP, melden Sie sich an, und klicken Sie in der Navigationsleiste auf den Link **Kalender** . Wenn alles funktioniert, sollte ein JSON-Abbild der Ereignisse im Kalender des Benutzers angezeigt werden.
 
 ## <a name="display-the-results"></a>Anzeigen der Ergebnisse
 
-Jetzt können Sie eine Ansicht hinzufügen, um die Ergebnisse benutzerfreundlicher anzuzeigen. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **views/Calendar** , und wählen Sie **> Ansicht hinzufügen**.... Benennen Sie die `Index` Ansicht, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
+Jetzt können Sie eine Ansicht hinzufügen, um die Ergebnisse auf eine benutzerfreundlichere Weise anzuzeigen. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Ansichten/Kalender** , und wählen Sie **#a0 Ansicht hinzufügen...**. Nennen Sie die `Index` Ansicht, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
 
 ```html
 @model IEnumerable<Microsoft.Graph.Event>
@@ -132,7 +144,7 @@ Jetzt können Sie eine Ansicht hinzufügen, um die Ergebnisse benutzerfreundlich
 </table>
 ```
 
-, Der eine Auflistung von Ereignissen durchläuft und jeweils eine Tabellenzeile hinzufügt. Entfernen Sie `return Json(events, JsonRequestBehavior.AllowGet);` die- `Index` Funktion in `Controllers/CalendarController.cs`, und ersetzen Sie Sie durch den folgenden Code.
+Dadurch wird eine Auflistung von Ereignissen durchlaufen und für jeden eine Tabellenzeile hinzugefügt. Entfernen Sie `return Json(events, JsonRequestBehavior.AllowGet);` die- `Index` Funktion in `Controllers/CalendarController.cs`, und ersetzen Sie Sie durch den folgenden Code.
 
 ```cs
 return View(events);
@@ -140,4 +152,4 @@ return View(events);
 
 Starten Sie die APP, melden Sie sich an, und klicken Sie auf den Link **Kalender** . Die APP sollte jetzt eine Tabelle mit Ereignissen rendern.
 
-![Screenshot der Ereignistabelle](./images/add-msgraph-01.png)
+![Ein Screenshot der Ereignistabelle](./images/add-msgraph-01.png)
