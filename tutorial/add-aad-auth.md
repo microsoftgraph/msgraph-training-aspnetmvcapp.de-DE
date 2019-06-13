@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung zur Unterstützung der Authentifizierung mit Azure AD. Dies ist erforderlich, um das erforderliche OAuth-Zugriffstoken für den Aufruf von Microsoft Graph abzurufen. In diesem Schritt integrieren Sie die OWIN-Middleware und die [Microsoft-Authentifizierungsbibliothek](https://www.nuget.org/packages/Microsoft.Identity.Client/) in die Anwendung.
+In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung, um die Authentifizierung mit Azure AD zu unterstützen. Dies ist erforderlich, um das erforderliche OAuth-Zugriffstoken zum Aufrufen von Microsoft Graph zu erhalten. In diesem Schritt werden Sie die OWIN-Middleware und die Bibliothek der [Microsoft-Authentifizierungsbibliothek](https://www.nuget.org/packages/Microsoft.Identity.Client/) in die Anwendung integrieren.
 
-Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt, und wählen Sie **> neues Element hinzufügen...**. Wählen **** Sie Webkonfigurationsdatei, benennen Sie die `PrivateSettings.config` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
+Klicken Sie mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt im Projektmappen-Explorer, und wählen Sie **#a0 neues Element hinzufügen aus...**. Wählen **** Sie Webkonfigurationsdatei aus, benennen Sie `PrivateSettings.config` die Datei, und klicken Sie dann auf **Hinzufügen**. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
 
 ```xml
 <appSettings>
@@ -13,12 +13,12 @@ Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das **Graph-
 </appSettings>
 ```
 
-Ersetzen `YOUR_APP_ID_HERE` Sie durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal, `YOUR_APP_PASSWORD_HERE` und ersetzen Sie durch den von Ihnen generierten Client Schlüssel. Wenn Ihr geheimer Client-Schlüssel ein`&`kaufmännisches und-Zeichen enthält () `&amp;` , `PrivateSettings.config`müssen Sie diese durch in ersetzen. Achten Sie auch darauf, den `PORT` Wert für die `ida:RedirectUri` an die URL der Anwendung anzupassen.
+Ersetzen `YOUR_APP_ID_HERE` Sie durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal, `YOUR_APP_PASSWORD_HERE` und ersetzen Sie durch den von Ihnen generierten Client Schlüssel. Wenn Ihr geheimer Client Schlüssel kaufmännische`&`und-Zeichen enthält (), müssen `&amp;` Sie `PrivateSettings.config`Sie unbedingt durch in ersetzen. Stellen Sie außerdem sicher, dass `PORT` Sie den Wert `ida:RedirectUri` für die an die URL der Anwendung anpassen.
 
 > [!IMPORTANT]
-> Wenn Sie die Quellcodeverwaltung wie git verwenden, wäre es jetzt ein guter Zeitpunkt, um die `PrivateSettings.config` Datei aus der Quellcodeverwaltung auszuschließen, um versehentlich Ihre APP-ID und Ihr Kennwort zu verlieren.
+> Wenn Sie die Quellcodeverwaltung wie git verwenden, wäre es jetzt ein guter Zeitpunkt, die Datei `PrivateSettings.config` aus der Quellcodeverwaltung auszuschließen, damit versehentlich keine APP-ID und Ihr Kennwort verloren gehen.
 
-Aktualisieren `Web.config` Sie, um diese neue Datei zu laden. Ersetzen Sie `<appSettings>` die (Leitung 7) durch Folgendes.
+Aktualisieren `Web.config` , um diese neue Datei zu laden. Ersetzen Sie `<appSettings>` die (Reihe 7) durch Folgendes:
 
 ```xml
 <appSettings file="PrivateSettings.config">
@@ -26,7 +26,7 @@ Aktualisieren `Web.config` Sie, um diese neue Datei zu laden. Ersetzen Sie `<app
 
 ## <a name="implement-sign-in"></a>Implementieren der Anmeldung
 
-Beginnen Sie damit, die OWIN-Middleware für die Verwendung der Azure AD-Authentifizierung für die APP zu initialisieren. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **App_Start** , und wählen Sie **Add > Class.**... Benennen Sie die `Startup.Auth.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt durch den folgenden Code.
+Beginnen Sie mit der Initialisierung der OWIN-Middleware, um Azure AD-Authentifizierung für die APP zu verwenden. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **App_Start** , und wählen Sie **#a0 Klasse hinzufügen...**. Nennen Sie die `Startup.Auth.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt durch den folgenden Code.
 
 ```cs
 using Microsoft.Identity.Client;
@@ -109,8 +109,10 @@ namespace graph_tutorial
 
         private async Task OnAuthorizationCodeReceivedAsync(AuthorizationCodeReceivedNotification notification)
         {
-            var idClient = new ConfidentialClientApplication(
-                appId, redirectUri, new ClientCredential(appSecret), null, null);
+            var idClient = ConfidentialClientApplicationBuilder.Create(appId)
+                .WithRedirectUri(redirectUri)
+                .WithClientSecret(appSecret)
+                .Build();
 
             string message;
             string debug;
@@ -119,8 +121,8 @@ namespace graph_tutorial
             {
                 string[] scopes = graphScopes.Split(' ');
 
-                var result = await idClient.AcquireTokenByAuthorizationCodeAsync(
-                    notification.Code, scopes);
+                var result = await idClient.AcquireTokenByAuthorizationCode(
+                    scopes, notification.Code).ExecuteAsync();
 
                 message = "Access token retrieved.";
                 debug = result.AccessToken;
@@ -138,9 +140,9 @@ namespace graph_tutorial
 }
 ```
 
-Dieser Code konfiguriert die OWIN-Middleware mit den Werten from `PrivateSettings.config` und definiert zwei Callback-Methoden `OnAuthenticationFailedAsync` und `OnAuthorizationCodeReceivedAsync`. Diese Rückrufmethoden werden aufgerufen, wenn der Anmeldeprozess von Azure zurückgegeben wird.
+Dieser Code konfiguriert die OWIN-Middleware mit den Werten aus `PrivateSettings.config` und definiert zwei Rückrufmethoden `OnAuthenticationFailedAsync` und. `OnAuthorizationCodeReceivedAsync` Diese Rückrufmethoden werden aufgerufen, wenn der Anmeldeprozess von Azure zurückgegeben wird.
 
-Aktualisieren Sie nun `Startup.cs` die Datei, um `ConfigureAuth` die Methode aufzurufen. Ersetzen Sie den gesamten Inhalt `Startup.cs` durch den folgenden Code.
+Aktualisieren Sie nun `Startup.cs` die Datei, um `ConfigureAuth` die-Methode aufzurufen. Ersetzen Sie den gesamten Inhalt `Startup.cs` durch den folgenden Code.
 
 ```cs
 using Microsoft.Owin;
@@ -160,7 +162,7 @@ namespace graph_tutorial
 }
 ```
 
-Fügen Sie `Error` der `HomeController` Klasse eine Aktion hinzu, um `message` die `debug` -und Abfrageparameter `Alert` in ein Objekt umzuwandeln. Öffnen `Controllers/HomeController.cs` Sie die folgende Funktion, und fügen Sie Sie hinzu.
+Fügen Sie `Error` der `HomeController` -Klasse eine Aktion hinzu, `message` um `debug` die-und Abfrage `Alert` Parameter in ein-Objekt zu transformieren. Öffnen `Controllers/HomeController.cs` Sie und fügen Sie die folgende Funktion hinzu.
 
 ```cs
 public ActionResult Error(string message, string debug)
@@ -170,7 +172,7 @@ public ActionResult Error(string message, string debug)
 }
 ```
 
-Hinzufügen eines Controllers zur Verarbeitung der Anmeldung. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **> Controller hinzufügen**.... Wählen Sie **MVC 5 Controller-Empty** aus, und wählen Sie **Hinzufügen**aus. Benennen Sie den `AccountController` Controller, und wählen Sie **Hinzufügen**. Ersetzen Sie den gesamten Inhalt der Datei durch den folgenden Code.
+Hinzufügen eines Controllers zur Behandlung der Anmeldung Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **#a0 Controller hinzufügen**aus.... Wählen Sie **MVC 5 Controller – leer** und dann **Hinzufügen**aus. Nennen Sie den `AccountController` Controller, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Owin.Security;
@@ -209,13 +211,13 @@ namespace graph_tutorial.Controllers
 }
 ```
 
-Dies definiert eine `SignIn` und `SignOut` -Aktion. Die `SignIn` Aktion überprüft, ob die Anforderung bereits authentifiziert wurde. Wenn dies nicht der Fall ist, wird die OWIN-Middleware aufgerufen, um den Benutzer zu authentifizieren. Durch `SignOut` die Aktion wird die OWIN-Middleware zur Abmeldung aufgerufen.
+Dies definiert eine `SignIn` and `SignOut` -Aktion. Die `SignIn` Aktion überprüft, ob die Anforderung bereits authentifiziert wurde. Wenn dies nicht der Fall ist, wird die OWIN-Middleware aufgerufen, um den Benutzer zu authentifizieren. Die `SignOut` Aktion ruft die OWIN-Middleware auf, um sich abzumelden.
 
-Speichern Sie die Änderungen, und starten Sie das Projekt. Klicken Sie auf die Anmeldeschaltfläche, und Sie sollten zu `https://login.microsoftonline.com`umgeleitet werden. Melden Sie sich mit Ihrem Microsoft-Konto an, und stimmen Sie den erforderlichen Berechtigungen zu. Der Browser leitet zur App um, wobei das Token angezeigt wird.
+Speichern Sie Ihre Änderungen, und starten Sie das Projekt. Klicken Sie auf die Anmeldeschaltfläche, und Sie sollten zu `https://login.microsoftonline.com`umgeleitet werden. Melden Sie sich mit Ihrem Microsoft-Konto an, und stimmen Sie den angeforderten Berechtigungen zu. Der Browser wird an die APP umgeleitet, wobei das Token angezeigt wird.
 
-### <a name="get-user-details"></a>Benutzer Details abrufen
+### <a name="get-user-details"></a>Abrufen von Benutzer Details
 
-Erstellen Sie zunächst eine neue Datei für alle Microsoft Graph-Aufrufe. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **> neuen Ordner hinzufügen**aus. Benennen Sie den `Helpers`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **>-Klasse hinzufügen**.... Benennen Sie die `GraphHelper.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
+Erstellen Sie zunächst eine neue Datei, in der alle Microsoft Graph-Anrufe gespeichert sind. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **#a0 neuen Ordner hinzufügen**aus. Nennen Sie den `Helpers`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **#a0 Klasse hinzufügen**. Nennen Sie die `GraphHelper.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Graph;
@@ -242,7 +244,7 @@ namespace graph_tutorial.Helpers
 }
 ```
 
-Dadurch wird die `GetUserDetails` Funktion implementiert, die das Microsoft Graph-SDK zum Aufrufen `/me` des Endpunkts und zum Zurückgeben des Ergebnisses verwendet.
+Dadurch wird die `GetUserDetails` Funktion implementiert, die das Microsoft Graph-SDK verwendet, `/me` um den Endpunkt aufzurufen und das Ergebnis zurückzugeben.
 
 Aktualisieren Sie `OnAuthorizationCodeReceivedAsync` die- `App_Start/Startup.Auth.cs` Methode in, um diese Funktion aufzurufen. Fügen Sie zunächst die folgende `using` Anweisung am Anfang der Datei hinzu.
 
@@ -257,8 +259,8 @@ try
 {
     string[] scopes = graphScopes.Split(' ');
 
-    var result = await idClient.AcquireTokenByAuthorizationCodeAsync(
-        notification.Code, scopes);
+    var result = await idClient.AcquireTokenByAuthorizationCode(
+        scopes, notification.Code).ExecuteAsync();
 
     var userDetails = await GraphHelper.GetUserDetailsAsync(result.AccessToken);
 
@@ -270,17 +272,18 @@ try
 }
 ```
 
-Wenn Sie nun Ihre Änderungen speichern und die app starten, sollte nach der Anmeldung der Benutzername und die e-Mail-Adresse anstelle des Zugriffstokens angezeigt werden.
+Wenn Sie nun Ihre Änderungen speichern und die app starten, sollten Sie nach der Anmeldung den Namen und die e-Mail-Adresse des Benutzers anstelle des Zugriffstokens sehen.
 
 ## <a name="storing-the-tokens"></a>Speichern der Token
 
-Da Sie jetzt Tokens abrufen können, ist es an der Zeit, eine Möglichkeit zum Speichern in der APP zu implementieren. Da es sich um eine Beispiel-App handelt, werden die Token in der Sitzung gespeichert. Eine echte APP würde eine zuverlässigere Secure Storage-Lösung wie eine Datenbank verwenden.
+Nachdem Sie nun Token erhalten können, ist es an der Zeit, eine Möglichkeit zum Speichern in der APP zu implementieren. Da es sich hierbei um eine Beispiel-App handelt, verwenden wir die Sitzung zum Speichern der Token. Eine reale APP würde eine zuverlässigere sichere Speicherlösung wie eine Datenbank verwenden.
 
-Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **> neuen Ordner hinzufügen**aus. Benennen Sie den `TokenStorage`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **>-Klasse hinzufügen**.... Benennen Sie die `SessionTokenStore.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
+Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Graph-Tutorial** , und wählen Sie **#a0 neuen Ordner hinzufügen**aus. Nennen Sie den `TokenStorage`Ordner. Klicken Sie mit der rechten Maustaste auf diesen neuen Ordner, und wählen Sie **#a0 Klasse hinzufügen**. Nennen Sie die `SessionTokenStore.cs` Datei, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den Inhalt dieser Datei durch den folgenden Code.
 
 ```cs
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using System.Threading;
 using System.Web;
 
@@ -297,29 +300,28 @@ namespace graph_tutorial.TokenStorage
     // Adapted from https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-v2
     public class SessionTokenStore
     {
-        private static ReaderWriterLockSlim sessionLock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
+        private static readonly ReaderWriterLockSlim sessionLock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
+
         private readonly string userId = string.Empty;
         private readonly string cacheId = string.Empty;
         private readonly string cachedUserId = string.Empty;
-        private HttpContextBase httpContext = null;
+        private HttpContext httpContext = null;
+        private ITokenCache tokenCache;
 
-        TokenCache tokenCache = new TokenCache();
-
-        public SessionTokenStore(string userId, HttpContextBase httpContext)
+        public SessionTokenStore(string userId, HttpContext httpcontext)
         {
             this.userId = userId;
-            cacheId = $"{userId}_TokenCache";
-            cachedUserId = $"{userId}_UserCache";
-            this.httpContext = httpContext;
-            Load();
+            this.cacheId = $"{userId}_TokenCache";
+            this.cachedUserId = $"{userId}_UserCache";
+            this.httpContext = httpcontext;
         }
 
-        public TokenCache GetMsalCacheInstance()
+        public void Initialize(ITokenCache tokenCache)
         {
-            tokenCache.SetBeforeAccess(BeforeAccessNotification);
-            tokenCache.SetAfterAccess(AfterAccessNotification);
+            this.tokenCache = tokenCache;
+            this.tokenCache.SetBeforeAccess(BeforeAccessNotification);
+            this.tokenCache.SetAfterAccess(AfterAccessNotification);
             Load();
-            return tokenCache;
         }
 
         public bool HasData()
@@ -335,28 +337,24 @@ namespace graph_tutorial.TokenStorage
         private void Load()
         {
             sessionLock.EnterReadLock();
-            tokenCache.Deserialize((byte[])httpContext.Session[cacheId]);
+            tokenCache.DeserializeMsalV3((byte[])httpContext.Session[cacheId]);
             sessionLock.ExitReadLock();
         }
 
         private void Persist()
         {
             sessionLock.EnterReadLock();
-            httpContext.Session[cacheId] = tokenCache.Serialize();
+            httpContext.Session[cacheId] = tokenCache.SerializeMsalV3();
             sessionLock.ExitReadLock();
         }
 
-        // Triggered right before MSAL needs to access the cache.
         private void BeforeAccessNotification(TokenCacheNotificationArgs args)
         {
-            // Reload the cache from the persistent store in case it changed since the last access.
             Load();
         }
 
-        // Triggered right after MSAL accessed the cache.
         private void AfterAccessNotification(TokenCacheNotificationArgs args)
         {
-            // if the access operation resulted in a cache update
             if (args.HasStateChanged)
             {
                 Persist();
@@ -381,7 +379,7 @@ namespace graph_tutorial.TokenStorage
 }
 ```
 
-Dieser Code erstellt eine `SessionTokenStore` Klasse, die mit der `TokenCache` Klasse der MSAL-Bibliothek funktioniert. Der größte Teil des Codes umfasst das Serialisieren und Deserialisieren der `TokenCache` in der Sitzung. Außerdem werden eine Klasse und Methoden zum Serialisieren und Deserialisieren der Details des Benutzers in die Sitzung bereitgestellt.
+Mit diesem Code wird `SessionTokenStore` `TokenCache` eine Klasse erstellt, die mit der Klasse der MSAL-Bibliothek arbeitet. Der meiste Code umfasst das Serialisieren und Deserialisieren der `TokenCache` in die Sitzung. Außerdem werden eine Klasse und Methoden zum Serialisieren und Deserialisieren der Details des Benutzers in die Sitzung bereitgestellt.
 
 Fügen Sie nun die folgende `using` Anweisung am Anfang der `App_Start/Startup.Auth.cs` Datei hinzu.
 
@@ -395,20 +393,21 @@ Aktualisieren Sie nun `OnAuthorizationCodeReceivedAsync` die-Funktion, um eine I
 ```cs
 private async Task OnAuthorizationCodeReceivedAsync(AuthorizationCodeReceivedNotification notification)
 {
-    // Get the signed in user's id and create a token cache
-    string signedInUserId = notification.AuthenticationTicket.Identity.FindFirst(ClaimTypes.NameIdentifier).Value;
-    SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId,
-        notification.OwinContext.Environment["System.Web.HttpContextBase"] as HttpContextBase);
+    var idClient = ConfidentialClientApplicationBuilder.Create(appId)
+        .WithRedirectUri(redirectUri)
+        .WithClientSecret(appSecret)
+        .Build();
 
-    var idClient = new ConfidentialClientApplication(
-        appId, redirectUri, new ClientCredential(appSecret), tokenStore.GetMsalCacheInstance(), null);
+    var signedInUserId = notification.AuthenticationTicket.Identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+    var tokenStore = new SessionTokenStore(signedInUserId, HttpContext.Current);
+    tokenStore.Initialize(idClient.UserTokenCache);
 
     try
     {
         string[] scopes = graphScopes.Split(' ');
 
-        var result = await idClient.AcquireTokenByAuthorizationCodeAsync(
-            notification.Code, scopes);
+        var result = await idClient.AcquireTokenByAuthorizationCode(
+            scopes, notification.Code).ExecuteAsync();
 
         var userDetails = await GraphHelper.GetUserDetailsAsync(result.AccessToken);
 
@@ -428,7 +427,7 @@ private async Task OnAuthorizationCodeReceivedAsync(AuthorizationCodeReceivedNot
         notification.HandleResponse();
         notification.Response.Redirect($"/Home/Error?message={message}&debug={ex.Message}");
     }
-    catch(Microsoft.Graph.ServiceException ex)
+    catch (Microsoft.Graph.ServiceException ex)
     {
         string message = "GetUserDetailsAsync threw an exception";
         notification.HandleResponse();
@@ -439,11 +438,11 @@ private async Task OnAuthorizationCodeReceivedAsync(AuthorizationCodeReceivedNot
 
 Zusammenfassung der Änderungen:
 
-- Der Code übergibt jetzt ein `TokenCache` Objekt an den Konstruktor für `ConfidentialClientApplication`. Die MSAL-Bibliothek behandelt die Logik zum Speichern der Token und zum Aktualisieren bei Bedarf.
-- Der Code übergibt nun die von Microsoft Graph abgerufenen Benutzer Details an `SessionTokenStore` das Objekt, das in der Sitzung gespeichert werden soll.
-- Bei Erfolg wird der Code nicht mehr umgeleitet, sondern nur zurückgegeben. Dadurch kann die OWIN-Middleware den Authentifizierungsprozess abschließen.
+- Der Code ersetzt nun den `ConfidentialClientApplication`standardmäßigen Benutzertoken-Cache durch eine Instanz `SessionTokenStore`von. Die MSAL-Bibliothek verarbeitet die Logik, die Token zu speichern und bei Bedarf zu aktualisieren.
+- Der Code übergibt nun die von Microsoft Graph erhaltenen Benutzer Details an `SessionTokenStore` das Objekt, das in der Sitzung gespeichert werden soll.
+- Bei Erfolg wird der Code nicht mehr umgeleitet, sondern nur zurückgegeben. Auf diese Weise kann die OWIN-Middleware den Authentifizierungsprozess abschließen.
 
-Da der Token-Cache in der Sitzung gespeichert ist, aktualisieren `SignOut` Sie die `Controllers/AccountController.cs` Aktion in, um den Tokenspeicher zu löschen, bevor Sie sich abmelden. Fügen Sie zunächst die folgende `using` Anweisung am Anfang der Datei hinzu.
+Da der Token-Cache in der Sitzung gespeichert wird, aktualisieren `SignOut` Sie die `Controllers/AccountController.cs` Aktion in, um den Tokenspeicher zu löschen, bevor Sie sich abmelden. Fügen Sie zunächst die folgende `using` Anweisung am Anfang der Datei hinzu.
 
 ```cs
 using graph_tutorial.TokenStorage;
@@ -457,7 +456,7 @@ public ActionResult SignOut()
     if (Request.IsAuthenticated)
     {
         string signedInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
-        SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId, HttpContext);
+        SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId, System.Web.HttpContext.Current);
 
         tokenStore.Clear();
 
@@ -469,7 +468,7 @@ public ActionResult SignOut()
 }
 ```
 
-Die zwischengespeicherten Benutzer Details sind etwas, das jede Ansicht in der Anwendung benötigt, und aktualisieren `BaseController` Sie daher die Klasse, um diese Informationen aus der Sitzung zu laden. Öffnen `Controllers/BaseController.cs` Sie und fügen Sie `using` die folgenden Anweisungen am Anfang der Datei.
+Die zwischengespeicherten Benutzer Details sind etwas, das jede Ansicht in der Anwendung benötigt, daher aktualisieren `BaseController` Sie die Klasse so, dass diese Informationen aus der Sitzung laden. Öffnen `Controllers/BaseController.cs` Sie und fügen Sie `using` die folgenden Anweisungen am Anfang der Datei hinzu.
 
 ```cs
 using graph_tutorial.TokenStorage;
@@ -487,7 +486,7 @@ protected override void OnActionExecuting(ActionExecutingContext filterContext)
     {
         // Get the signed in user's id and create a token cache
         string signedInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
-        SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId, HttpContext);
+        SessionTokenStore tokenStore = new SessionTokenStore(signedInUserId, System.Web.HttpContext.Current);
 
         if (tokenStore.HasData())
         {
@@ -507,18 +506,18 @@ protected override void OnActionExecuting(ActionExecutingContext filterContext)
 }
 ```
 
-Starten Sie den Server, und gehen Sie durch den Anmeldeprozess. Sie sollten auf der Startseite zurückkehren, aber die Benutzeroberfläche sollte sich ändern, um anzugeben, dass Sie angemeldet sind.
+Starten Sie den Server, und fahren Sie mit dem Anmeldevorgang fort. Sie sollten wieder auf der Startseite enden, aber die Benutzeroberfläche sollte sich ändern, um anzugeben, dass Sie angemeldet sind.
 
-![Screenshot der Startseite nach der Anmeldung](./images/add-aad-auth-01.png)
+![Ein Screenshot der Startseite nach der Anmeldung](./images/add-aad-auth-01.png)
 
-Klicken Sie auf den Benutzer Avatar in der oberen rechten Ecke, **** um auf den Link abmelden zuzugreifen. Wenn **** Sie auf Abmelden klicken, wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite.
+Klicken Sie in der oberen rechten Ecke auf den Avatar des Benutzers **** , um auf den Abmeldelink zuzugreifen. Durch **** klicken auf Abmelden wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite zurück.
 
-![Screenshot des Dropdownmenüs mit dem Link "Abmelden"](./images/add-aad-auth-02.png)
+![Screenshot des Dropdownmenüs mit dem Link zum Abmelden](./images/add-aad-auth-02.png)
 
 ## <a name="refreshing-tokens"></a>Aktualisieren von Token
 
-Zu diesem Zeitpunkt verfügt Ihre Anwendung über ein Zugriffstoken, das in der `Authorization` Kopfzeile von API-aufrufen gesendet wird. Dies ist das Token, mit dem die APP auf Microsoft Graph im Namen des Benutzers zugreifen kann.
+Zu diesem Zeitpunkt verfügt Ihre Anwendung über ein Zugriffstoken, das in der `Authorization` Kopfzeile von API-aufrufen gesendet wird. Dies ist das Token, das es der App ermöglicht, im Namen des Benutzers auf Microsoft Graph zuzugreifen.
 
-Dieses Token ist jedoch kurzlebig. Das Token läuft eine Stunde nach der Ausgabe ab. An dieser Stelle wird das Aktualisierungstoken nützlich. Das Aktualisierungstoken ermöglicht der APP, ein neues Zugriffstoken anzufordern, ohne dass der Benutzer sich erneut anmelden muss.
+Dieses Token ist jedoch nur kurzlebig. Das Token läuft eine Stunde nach seiner Ausgabe ab. Hier wird das Aktualisierungstoken nützlich. Das Aktualisierungstoken ermöglicht der APP, ein neues Zugriffstoken anzufordern, ohne dass sich der Benutzer erneut anmelden muss.
 
-Da die APP die MSAL-Bibliothek und ein `TokenCache` Objekt verwendet, müssen Sie keine Token-Aktualisierungslogik implementieren. Die `ConfidentialClientApplication.AcquireTokenSilentAsync` -Methode erledigt die gesamte Logik für Sie. Zuerst wird das zwischengespeicherte Token überprüft, und wenn es nicht abgelaufen ist, wird es zurückgegeben. Wenn es abgelaufen ist, wird das zwischengespeicherte Aktualisierungstoken verwendet, um eine neue zu erhalten. Diese Methode wird im folgenden Modul verwendet.
+Da die APP die MSAL-Bibliothek und ein `TokenCache` Objekt verwendet, müssen Sie keine Logik für die Token-Aktualisierung implementieren. Die `ConfidentialClientApplication.AcquireTokenSilentAsync` -Methode führt die gesamte Logik für Sie aus. Zunächst wird das zwischengespeicherte Token überprüft, und wenn es nicht abgelaufen ist, wird es zurückgegeben. Wenn er abgelaufen ist, wird das zwischengespeicherte Aktualisierungstoken verwendet, um ein neues zu erhalten. Sie verwenden diese Methode im folgenden Modul.
