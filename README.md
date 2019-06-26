@@ -24,7 +24,7 @@ Wenn Sie das fertige Beispiel nur generieren möchten, indem Sie dieser Übungse
 
 ## <a name="watch-the-module"></a>Modul ansehen
 
-Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube zur Verfügung: [Erstellen von MVC-apps mit dem Microsoft Graph .NET SDK](https://youtu.be/87_gpuFg1Wo)
+Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube zur Verfügung: [Erstellen von MVC-apps mit dem Microsoft Graph .NET SDK](https://youtu.be/a2teHZ5WuNc)
 
 ## <a name="contributors"></a>Mitwirkende
 
@@ -37,8 +37,9 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 ## <a name="version-history"></a>Versionsverlauf
 
-| Version | Datum               | Kommentare                                             |
+| Version |        Datum        |                       Kommentare                       |
 | ------- | ------------------ | ---------------------------------------------------- |
+| 1.9     | 18. Juni 2019      | Readme in aktualisierte Screencast-Aufzeichnung aktualisiert     |
 | 1,8     | 29. Mai 2018       | 2019Q4-Inhaltsaktualisierung                               |
 | 1.7     | 4. April 2018      | 2019Q3-Inhaltsaktualisierung                               |
 | 1.6     | 18. Dezember 2018  | 2019Q2-Inhaltsaktualisierung                               |
