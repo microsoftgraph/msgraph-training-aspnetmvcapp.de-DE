@@ -50,9 +50,8 @@ Erweitern Sie zunächst die `GraphHelper` Klasse, die Sie im letzten Modul erste
                         .WithClientSecret(appSecret)
                         .Build();
 
-                    string signedInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
-                    var tokenStore = new SessionTokenStore(signedInUserId, HttpContext.Current);
-                    tokenStore.Initialize(idClient.UserTokenCache);
+                    var tokenStore = new SessionTokenStore(idClient.UserTokenCache,
+                            HttpContext.Current, ClaimsPrincipal.Current);
 
                     var accounts = await idClient.GetAccountsAsync();
 
@@ -80,8 +79,8 @@ Erweitern Sie zunächst die `GraphHelper` Klasse, die Sie im letzten Modul erste
 1. Erstellen Sie einen Controller für die Kalenderansichten. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **#a0 Controller hinzufügen**aus.... Wählen Sie **MVC 5 Controller – leer** , und wählen Sie **Hinzufügen**aus. Nennen Sie den `CalendarController` Controller, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt der neuen Datei durch den folgenden Code.
 
     ```cs
-    using System;
     using graph_tutorial.Helpers;
+    using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
 

@@ -1,17 +1,23 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Öffnen Sie Visual Studio, und wählen Sie **Datei #a0 neues #a1 Projekt**aus. Führen Sie im Dialogfeld **Neues Projekt** folgende Schritte aus:
+Erstellen Sie zunächst ein ASP.NET MVC-Projekt.
 
-1. Wählen Sie **Vorlagen #a0 Visual C# #a1-Webs**aus.
-1. Wählen Sie **ASP.NET-Webanwendung (.NET Framework)** aus.
-1. Geben Sie **Graph-Tutorial** für den Namen des Projekts ein.
+1. Öffnen Sie Visual Studio, und wählen Sie **Neues Projekt erstellen**aus.
 
-    ![Visual Studio 2017 Dialogfeld "Neues Projekt erstellen"](./images/vs-new-project-01.png)
+1. Wählen Sie im Dialogfeld **Neues Projekt erstellen** die Option **ASP.NET-Webanwendung (.NET Framework)** aus, die C# verwendet, und wählen Sie dann **weiter**aus.
+
+    ![Visual Studio 2019 Dialogfeld "Neues Projekt erstellen"](./images/vs-create-new-project.png)
+
+1. Geben `graph-tutorial` Sie in das Feld **Projektname** ein, und wählen Sie **Erstellen**aus.
+
+    ![Visual Studio 2019 Dialogfeld "Neues Projekt konfigurieren"](./images/vs-configure-new-project.png)
 
     > [!NOTE]
     > Stellen Sie sicher, dass Sie genau den gleichen Namen für das Visual Studio Projekt eingeben, das in diesen Übungseinheiten angegeben ist. Der Visual Studio Projektname wird Teil des Namespaces im Code. Der Code in diesen Anweisungen hängt vom Namespace ab, der dem in diesen Anweisungen angegebenen Visual Studio Projektnamen entspricht. Wenn Sie einen anderen Projektnamen verwenden, wird der Code nur dann kompiliert, wenn Sie alle Namespaces so anpassen, dass Sie dem Visual Studio Projektnamen entsprechen, den Sie beim Erstellen des Projekts eingeben.
 
-1. Wählen Sie **OK** aus. Wählen Sie im Dialogfeld **neue ASP.NET-Webanwendungsprojekt** die Option **MVC** (unter **ASP.NET 4.7.2 Templates**) aus, und klicken Sie auf **OK**.
+1. Wählen Sie **MVC** aus, und wählen Sie **Erstellen**aus.
+
+    ![Visual Studio 2019 neues ASP.NET-Webanwendungs Dialogfeld erstellen](./images/vs-create-new-asp-app.png)
 
 1. Drücken Sie **F5** , oder wählen Sie **Debug #a0 Debuggen starten**aus. Wenn alles funktioniert, sollte der Standardbrowser geöffnet und eine standardmäßige ASP.NET-Seite angezeigt werden.
 
@@ -33,7 +39,7 @@ Bevor Sie fortfahren, aktualisieren `bootstrap` Sie das NuGet-Paket, und install
     Install-Package Microsoft.Owin.Host.SystemWeb
     Install-Package Microsoft.Owin.Security.OpenIdConnect
     Install-Package Microsoft.Owin.Security.Cookies
-    Install-Package Microsoft.Identity.Client -Version 3.0.8
+    Install-Package Microsoft.Identity.Client -Version 4.0.0
     Install-Package Microsoft.Graph -Version 1.15.0
     ```
 
@@ -43,11 +49,12 @@ In diesem Abschnitt wird die grundlegende Struktur der Anwendung erstellt.
 
 1. Erstellen Sie eine grundlegende OWIN-Startklasse. Klicken Sie im Projekt `graph-tutorial` Mappen-Explorer mit der rechten Maustaste auf den Ordner, und wählen Sie **#a0 neues Element hinzufügen**. Wählen Sie die **OWIN-Startklassen** Vorlage aus, `Startup.cs`benennen Sie die Datei, und wählen Sie **Hinzufügen**aus.
 
-1. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **#a0 Klasse hinzufügen**aus. Nennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**aus. Fügen Sie den folgenden Code `Alert.cs`in hinzu. Sie verwenden diese Klasse, um Fehlermeldungen in den App-Ansichten zu flashen.
+1. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **#a0 Klasse hinzufügen**aus. Nennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**aus. Ersetzen Sie den gesamten Inhalt `Alert.cs` durch den folgenden Code.
 
     ```cs
     namespace graph_tutorial.Models
     {
+        // Used to flash error messages in the app's views.
         public class Alert
         {
             public const string AlertKey = "TempDataAlerts";
@@ -160,7 +167,8 @@ In diesem Abschnitt wird die grundlegende Struktur der Anwendung erstellt.
     </html>
     ```
 
-    Dieser Code fügt [Bootstrap](https://getbootstrap.com/) für einfaches Styling und [Font awesome](https://fontawesome.com/) für einige einfache Symbole hinzu. Außerdem wird ein globales Layout mit einer Navigationsleiste definiert und die `Alert` Klasse verwendet, um Warnungen anzuzeigen.
+    > [!NOTE]
+    > Dieser Code fügt [Bootstrap](https://getbootstrap.com/) für einfaches Styling und [Font awesome](https://fontawesome.com/) für einige einfache Symbole hinzu. Außerdem wird ein globales Layout mit einer Navigationsleiste definiert und die `Alert` Klasse verwendet, um Warnungen anzuzeigen.
 
 1. Öffnen `Content/Site.css` Sie den gesamten Inhalt, und ersetzen Sie ihn durch den folgenden Code.
 
@@ -226,8 +234,6 @@ In diesem Abschnitt wird die grundlegende Struktur der Anwendung erstellt.
         }
     }
     ```
-
-    Jeder Controller kann von dieser Basis Controllerklasse erben, um Zugriff auf die `Flash` Funktion zu erhalten. Aktualisieren Sie `HomeController` die-Klasse, `BaseController`um von zu erben.
 
 1. Öffnen `Controllers/HomeController.cs` Sie und ändern `public class HomeController : Controller` Sie die-Reihe in:
 

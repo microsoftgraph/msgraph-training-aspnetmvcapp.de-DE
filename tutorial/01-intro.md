@@ -13,7 +13,7 @@ In diesem Lernprogramm erfahren Sie, wie Sie eine ASP.NET MVC-Webanwendung erste
 Bevor Sie mit diesem Lernprogramm beginnen, sollten Sie [Visual Studio](https://visualstudio.microsoft.com/vs/) auf dem Entwicklungscomputer installiert haben. Wenn Sie nicht über Visual Studio verfügen, besuchen Sie den vorherigen Link für Downloadoptionen.
 
 > [!NOTE]
-> Dieses Lernprogramm wurde mit Visual Studio 2017 Version 15,81 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, jedoch nicht getestet.
+> Dieses Lernprogramm wurde mit Visual Studio 2019 Version 16.1.4 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, jedoch nicht getestet.
 
 ## <a name="watch-the-tutorial"></a>Das Lernprogramm ansehen
 

@@ -4,7 +4,7 @@
 
 Um das abgeschlossene Projekt in diesem Ordner auszuführen, benötigen Sie Folgendes:
 
-- [Visual Studio](https://visualstudio.microsoft.com/vs/) auf dem Entwicklungscomputer installiert. Wenn Sie nicht über Visual Studio verfügen, besuchen Sie den vorherigen Link für Downloadoptionen. (**Hinweis:** dieses Lernprogramm wurde mit Visual Studio 2017 Version 15,81 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
+- [Visual Studio](https://visualstudio.microsoft.com/vs/) auf dem Entwicklungscomputer installiert. Wenn Sie nicht über Visual Studio verfügen, besuchen Sie den vorherigen Link für Downloadoptionen. (**Hinweis:** dieses Lernprogramm wurde mit Visual Studio 2019 Version 16.1.4 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
 - Entweder ein persönliches Microsoft-Konto mit einem Postfach auf Outlook.com oder ein Microsoft-Arbeits-oder Schulkonto.
 
 Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenloses Konto zu erhalten:
@@ -14,7 +14,7 @@ Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenlose
 
 ## <a name="register-a-web-application-with-the-azure-active-directory-admin-center"></a>Registrieren einer Webanwendung im Azure-Active Directory Admin Center
 
-1. Bestimmen Sie die URL Ihrer ASP.NET-Anwendung. Wählen Sie im Projektmappen-Explorer von Visual Studio das **Graph-Tutorial-** Projekt aus. Suchen Sie im Fenster **Eigenschaften** den Wert von **URL**. Kopieren Sie diesen Wert.
+1. Bestimmen Sie die SSL-URL der ASP.NET-Anwendung. Wählen Sie im Projektmappen-Explorer von Visual Studio das **Graph-Tutorial-** Projekt aus. Suchen Sie im Fenster **Eigenschaften** den Wert der **SSL-URL**. Kopieren Sie diesen Wert.
 
     ![Screenshot des Visual Studio Fensters "Eigenschaften"](/tutorial/images/vs-project-url.png)
 
@@ -57,7 +57,6 @@ Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenlose
 1. Bearbeiten Sie `PrivateSettings.config` die Datei, und nehmen Sie die folgenden Änderungen vor.
     1. Ersetzen `YOUR_APP_ID_HERE` Sie durch die **Anwendungs-ID** , die Sie im App-Registrierungs Portal erhalten haben.
     1. Ersetzen `YOUR_APP_PASSWORD_HERE` Sie durch das **Anwendungs Geheimnis** , das Sie aus dem App-Registrierungs Portal erhalten haben.
-    1. Ersetzen `PORT` Sie durch die Portnummer, die als Teil der URL Ihrer ASP.NET-Anwendung enthalten ist.
 1. Öffnen `graph-tutorial.sln` Sie in Visual Studio. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf die **Grafik Lernprogramm** Lösung, und wählen Sie **NuGet-Pakete wiederherstellen**.
 
 ## <a name="run-the-sample"></a>Ausführen des Beispiels

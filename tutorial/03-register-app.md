@@ -2,7 +2,7 @@
 
 In dieser Übung erstellen Sie mithilfe des Azure Active Directory Admin Center eine neue Azure AD-Webanwendungs Registrierung.
 
-1. Bestimmen der URL der ASP.NET-App Wählen Sie im Projektmappen-Explorer von Visual Studio das **Graph-Tutorial-** Projekt aus. Suchen Sie im Fenster **Eigenschaften** den Wert von **URL**. Kopieren Sie diesen Wert.
+1. Bestimmen Sie die SSL-URL der ASP.net-app. Wählen Sie im Projektmappen-Explorer von Visual Studio das **Graph-Tutorial-** Projekt aus. Suchen Sie im Fenster **Eigenschaften** den Wert der **SSL-URL**. Kopieren Sie diesen Wert.
 
     ![Screenshot des Visual Studio Fensters "Eigenschaften"](./images/vs-project-url.png)
 
