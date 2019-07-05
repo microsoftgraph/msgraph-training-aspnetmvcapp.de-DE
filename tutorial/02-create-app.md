@@ -1,53 +1,60 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-<span data-ttu-id="d4761-101">Öffnen Sie Visual Studio, und wählen Sie **Datei #a0 neues #a1 Projekt**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-101">Open Visual Studio, and select **File > New > Project**.</span></span> <span data-ttu-id="d4761-102">Führen Sie im Dialogfeld **Neues Projekt** folgende Schritte aus:</span><span class="sxs-lookup"><span data-stu-id="d4761-102">In the **New Project** dialog, do the following:</span></span>
+<span data-ttu-id="43a82-101">Erstellen Sie zunächst ein ASP.NET MVC-Projekt.</span><span class="sxs-lookup"><span data-stu-id="43a82-101">Start by creating an ASP.NET MVC project.</span></span>
 
-1. <span data-ttu-id="d4761-103">Wählen Sie **Vorlagen #a0 Visual C# #a1-Webs**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-103">Select **Templates > Visual C# > Web**.</span></span>
-1. <span data-ttu-id="d4761-104">Wählen Sie **ASP.NET-Webanwendung (.NET Framework)** aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-104">Select **ASP.NET Web Application (.NET Framework)**.</span></span>
-1. <span data-ttu-id="d4761-105">Geben Sie **Graph-Tutorial** für den Namen des Projekts ein.</span><span class="sxs-lookup"><span data-stu-id="d4761-105">Enter **graph-tutorial** for the Name of the project.</span></span>
+1. <span data-ttu-id="43a82-102">Öffnen Sie Visual Studio, und wählen Sie **Neues Projekt erstellen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-102">Open Visual Studio, and select **Create a new project**.</span></span>
 
-    ![Visual Studio 2017 Dialogfeld "Neues Projekt erstellen"](./images/vs-new-project-01.png)
+1. <span data-ttu-id="43a82-103">Wählen Sie im Dialogfeld **Neues Projekt erstellen** die Option **ASP.NET-Webanwendung (.NET Framework)** aus, die C# verwendet, und wählen Sie dann **weiter**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-103">In the **Create new project** dialog, choose the **ASP.NET Web Application (.NET Framework)** option that uses C#, then select **Next**.</span></span>
+
+    ![Visual Studio 2019 Dialogfeld "Neues Projekt erstellen"](./images/vs-create-new-project.png)
+
+1. <span data-ttu-id="43a82-105">Geben `graph-tutorial` Sie in das Feld **Projektname** ein, und wählen Sie **Erstellen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-105">Enter `graph-tutorial` in the **Project name** field and select **Create**.</span></span>
+
+    ![Visual Studio 2019 Dialogfeld "Neues Projekt konfigurieren"](./images/vs-configure-new-project.png)
 
     > [!NOTE]
-    > <span data-ttu-id="d4761-107">Stellen Sie sicher, dass Sie genau den gleichen Namen für das Visual Studio Projekt eingeben, das in diesen Übungseinheiten angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="d4761-107">Ensure that you enter the exact same name for the Visual Studio Project that is specified in these lab instructions.</span></span> <span data-ttu-id="d4761-108">Der Visual Studio Projektname wird Teil des Namespaces im Code.</span><span class="sxs-lookup"><span data-stu-id="d4761-108">The Visual Studio Project name becomes part of the namespace in the code.</span></span> <span data-ttu-id="d4761-109">Der Code in diesen Anweisungen hängt vom Namespace ab, der dem in diesen Anweisungen angegebenen Visual Studio Projektnamen entspricht.</span><span class="sxs-lookup"><span data-stu-id="d4761-109">The code inside these instructions depends on the namespace matching the Visual Studio Project name specified in these instructions.</span></span> <span data-ttu-id="d4761-110">Wenn Sie einen anderen Projektnamen verwenden, wird der Code nur dann kompiliert, wenn Sie alle Namespaces so anpassen, dass Sie dem Visual Studio Projektnamen entsprechen, den Sie beim Erstellen des Projekts eingeben.</span><span class="sxs-lookup"><span data-stu-id="d4761-110">If you use a different project name the code will not compile unless you adjust all the namespaces to match the Visual Studio Project name you enter when you create the project.</span></span>
+    > <span data-ttu-id="43a82-107">Stellen Sie sicher, dass Sie genau den gleichen Namen für das Visual Studio Projekt eingeben, das in diesen Übungseinheiten angegeben ist.</span><span class="sxs-lookup"><span data-stu-id="43a82-107">Ensure that you enter the exact same name for the Visual Studio Project that is specified in these lab instructions.</span></span> <span data-ttu-id="43a82-108">Der Visual Studio Projektname wird Teil des Namespaces im Code.</span><span class="sxs-lookup"><span data-stu-id="43a82-108">The Visual Studio Project name becomes part of the namespace in the code.</span></span> <span data-ttu-id="43a82-109">Der Code in diesen Anweisungen hängt vom Namespace ab, der dem in diesen Anweisungen angegebenen Visual Studio Projektnamen entspricht.</span><span class="sxs-lookup"><span data-stu-id="43a82-109">The code inside these instructions depends on the namespace matching the Visual Studio Project name specified in these instructions.</span></span> <span data-ttu-id="43a82-110">Wenn Sie einen anderen Projektnamen verwenden, wird der Code nur dann kompiliert, wenn Sie alle Namespaces so anpassen, dass Sie dem Visual Studio Projektnamen entsprechen, den Sie beim Erstellen des Projekts eingeben.</span><span class="sxs-lookup"><span data-stu-id="43a82-110">If you use a different project name the code will not compile unless you adjust all the namespaces to match the Visual Studio Project name you enter when you create the project.</span></span>
 
-1. <span data-ttu-id="d4761-111">Wählen Sie **OK** aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-111">Select **OK**.</span></span> <span data-ttu-id="d4761-112">Wählen Sie im Dialogfeld **neue ASP.NET-Webanwendungsprojekt** die Option **MVC** (unter **ASP.NET 4.7.2 Templates**) aus, und klicken Sie auf **OK**.</span><span class="sxs-lookup"><span data-stu-id="d4761-112">In the **New ASP.NET Web Application Project** dialog, select **MVC** (under **ASP.NET 4.7.2 Templates**) and select **OK**.</span></span>
+1. <span data-ttu-id="43a82-111">Wählen Sie **MVC** aus, und wählen Sie **Erstellen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-111">Choose **MVC** and select **Create**.</span></span>
 
-1. <span data-ttu-id="d4761-113">Drücken Sie **F5** , oder wählen Sie **Debug #a0 Debuggen starten**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-113">Press **F5** or select **Debug > Start Debugging**.</span></span> <span data-ttu-id="d4761-114">Wenn alles funktioniert, sollte der Standardbrowser geöffnet und eine standardmäßige ASP.NET-Seite angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="d4761-114">If everything is working, your default browser should open and display a default ASP.NET page.</span></span>
+    ![Visual Studio 2019 neues ASP.NET-Webanwendungs Dialogfeld erstellen](./images/vs-create-new-asp-app.png)
 
-## <a name="add-nuget-packages"></a><span data-ttu-id="d4761-115">NuGet-Pakete hinzufügen</span><span class="sxs-lookup"><span data-stu-id="d4761-115">Add NuGet packages</span></span>
+1. <span data-ttu-id="43a82-113">Drücken Sie **F5** , oder wählen Sie **Debug #a0 Debuggen starten**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-113">Press **F5** or select **Debug > Start Debugging**.</span></span> <span data-ttu-id="43a82-114">Wenn alles funktioniert, sollte der Standardbrowser geöffnet und eine standardmäßige ASP.NET-Seite angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="43a82-114">If everything is working, your default browser should open and display a default ASP.NET page.</span></span>
 
-<span data-ttu-id="d4761-116">Bevor Sie fortfahren, aktualisieren `bootstrap` Sie das NuGet-Paket, und installieren Sie einige zusätzliche NuGet-Pakete, die Sie später verwenden werden.</span><span class="sxs-lookup"><span data-stu-id="d4761-116">Before moving on, update the `bootstrap` NuGet package, and install some additional NuGet packages that you will use later.</span></span>
+## <a name="add-nuget-packages"></a><span data-ttu-id="43a82-115">NuGet-Pakete hinzufügen</span><span class="sxs-lookup"><span data-stu-id="43a82-115">Add NuGet packages</span></span>
 
-- <span data-ttu-id="d4761-117">[Microsoft. Owin. Host. SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) zum Aktivieren der [Owin](http://owin.org/) -Schnittstellen in der ASP.NET-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="d4761-117">[Microsoft.Owin.Host.SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) to enable the [OWIN](http://owin.org/) interfaces in the ASP.NET application.</span></span>
-- <span data-ttu-id="d4761-118">[Microsoft. Owin. Security. OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/) für die Durchführung der OpenID Connect-Authentifizierung mit Azure.</span><span class="sxs-lookup"><span data-stu-id="d4761-118">[Microsoft.Owin.Security.OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/) for doing OpenID Connect authentication with Azure.</span></span>
-- <span data-ttu-id="d4761-119">[Microsoft. Owin. Security. Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies/) , um die Cookie-basierte Authentifizierung zu aktivieren.</span><span class="sxs-lookup"><span data-stu-id="d4761-119">[Microsoft.Owin.Security.Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies/) to enable cookie-based authentication.</span></span>
-- <span data-ttu-id="d4761-120">[Microsoft. Identity. Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) zum Anfordern und Verwalten von Zugriffstoken.</span><span class="sxs-lookup"><span data-stu-id="d4761-120">[Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) for requesting and managing access tokens.</span></span>
-- <span data-ttu-id="d4761-121">[Microsoft. Graph](https://www.nuget.org/packages/Microsoft.Graph/) für das tätigen von Anrufen an Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="d4761-121">[Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) for making calls to Microsoft Graph.</span></span>
+<span data-ttu-id="43a82-116">Bevor Sie fortfahren, aktualisieren `bootstrap` Sie das NuGet-Paket, und installieren Sie einige zusätzliche NuGet-Pakete, die Sie später verwenden werden.</span><span class="sxs-lookup"><span data-stu-id="43a82-116">Before moving on, update the `bootstrap` NuGet package, and install some additional NuGet packages that you will use later.</span></span>
 
-1. <span data-ttu-id="d4761-122">Wählen Sie **Tools #a0 NuGet-Paket-Manager #a1-Paket-Manager-Konsole**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-122">Select **Tools > NuGet Package Manager > Package Manager Console**.</span></span>
-1. <span data-ttu-id="d4761-123">Geben Sie in der Paket-Manager-Konsole die folgenden Befehle ein.</span><span class="sxs-lookup"><span data-stu-id="d4761-123">In the Package Manager Console, enter the following commands.</span></span>
+- <span data-ttu-id="43a82-117">[Microsoft. Owin. Host. SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) zum Aktivieren der [Owin](http://owin.org/) -Schnittstellen in der ASP.NET-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="43a82-117">[Microsoft.Owin.Host.SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/) to enable the [OWIN](http://owin.org/) interfaces in the ASP.NET application.</span></span>
+- <span data-ttu-id="43a82-118">[Microsoft. Owin. Security. OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/) für die Durchführung der OpenID Connect-Authentifizierung mit Azure.</span><span class="sxs-lookup"><span data-stu-id="43a82-118">[Microsoft.Owin.Security.OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/) for doing OpenID Connect authentication with Azure.</span></span>
+- <span data-ttu-id="43a82-119">[Microsoft. Owin. Security. Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies/) , um die Cookie-basierte Authentifizierung zu aktivieren.</span><span class="sxs-lookup"><span data-stu-id="43a82-119">[Microsoft.Owin.Security.Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies/) to enable cookie-based authentication.</span></span>
+- <span data-ttu-id="43a82-120">[Microsoft. Identity. Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) zum Anfordern und Verwalten von Zugriffstoken.</span><span class="sxs-lookup"><span data-stu-id="43a82-120">[Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) for requesting and managing access tokens.</span></span>
+- <span data-ttu-id="43a82-121">[Microsoft. Graph](https://www.nuget.org/packages/Microsoft.Graph/) für das tätigen von Anrufen an Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="43a82-121">[Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) for making calls to Microsoft Graph.</span></span>
+
+1. <span data-ttu-id="43a82-122">Wählen Sie **Tools #a0 NuGet-Paket-Manager #a1-Paket-Manager-Konsole**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-122">Select **Tools > NuGet Package Manager > Package Manager Console**.</span></span>
+1. <span data-ttu-id="43a82-123">Geben Sie in der Paket-Manager-Konsole die folgenden Befehle ein.</span><span class="sxs-lookup"><span data-stu-id="43a82-123">In the Package Manager Console, enter the following commands.</span></span>
 
     ```Powershell
     Update-Package bootstrap
     Install-Package Microsoft.Owin.Host.SystemWeb
     Install-Package Microsoft.Owin.Security.OpenIdConnect
     Install-Package Microsoft.Owin.Security.Cookies
-    Install-Package Microsoft.Identity.Client -Version 3.0.8
+    Install-Package Microsoft.Identity.Client -Version 4.0.0
     Install-Package Microsoft.Graph -Version 1.15.0
     ```
 
-## <a name="design-the-app"></a><span data-ttu-id="d4761-124">Entwerfen der APP</span><span class="sxs-lookup"><span data-stu-id="d4761-124">Design the app</span></span>
+## <a name="design-the-app"></a><span data-ttu-id="43a82-124">Entwerfen der APP</span><span class="sxs-lookup"><span data-stu-id="43a82-124">Design the app</span></span>
 
-<span data-ttu-id="d4761-125">In diesem Abschnitt wird die grundlegende Struktur der Anwendung erstellt.</span><span class="sxs-lookup"><span data-stu-id="d4761-125">In this section you will create the basic structure of the application.</span></span>
+<span data-ttu-id="43a82-125">In diesem Abschnitt wird die grundlegende Struktur der Anwendung erstellt.</span><span class="sxs-lookup"><span data-stu-id="43a82-125">In this section you will create the basic structure of the application.</span></span>
 
-1. <span data-ttu-id="d4761-126">Erstellen Sie eine grundlegende OWIN-Startklasse.</span><span class="sxs-lookup"><span data-stu-id="d4761-126">Create a basic OWIN startup class.</span></span> <span data-ttu-id="d4761-127">Klicken Sie im Projekt `graph-tutorial` Mappen-Explorer mit der rechten Maustaste auf den Ordner, und wählen Sie **#a0 neues Element hinzufügen**.</span><span class="sxs-lookup"><span data-stu-id="d4761-127">Right-click the `graph-tutorial` folder in Solution Explorer and select **Add > New Item**.</span></span> <span data-ttu-id="d4761-128">Wählen Sie die **OWIN-Startklassen** Vorlage aus, `Startup.cs`benennen Sie die Datei, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-128">Choose the **OWIN Startup Class** template, name the file `Startup.cs`, and select **Add**.</span></span>
+1. <span data-ttu-id="43a82-126">Erstellen Sie eine grundlegende OWIN-Startklasse.</span><span class="sxs-lookup"><span data-stu-id="43a82-126">Create a basic OWIN startup class.</span></span> <span data-ttu-id="43a82-127">Klicken Sie im Projekt `graph-tutorial` Mappen-Explorer mit der rechten Maustaste auf den Ordner, und wählen Sie **#a0 neues Element hinzufügen**.</span><span class="sxs-lookup"><span data-stu-id="43a82-127">Right-click the `graph-tutorial` folder in Solution Explorer and select **Add > New Item**.</span></span> <span data-ttu-id="43a82-128">Wählen Sie die **OWIN-Startklassen** Vorlage aus, `Startup.cs`benennen Sie die Datei, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-128">Choose the **OWIN Startup Class** template, name the file `Startup.cs`, and select **Add**.</span></span>
 
-1. <span data-ttu-id="d4761-129">Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **#a0 Klasse hinzufügen**aus. Nennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-129">Right-click the **Models** folder in Solution Explorer and select **Add > Class...**. Name the class `Alert` and select **Add**.</span></span> <span data-ttu-id="d4761-130">Fügen Sie den folgenden Code `Alert.cs`in hinzu.</span><span class="sxs-lookup"><span data-stu-id="d4761-130">Add the following code in `Alert.cs`.</span></span> <span data-ttu-id="d4761-131">Sie verwenden diese Klasse, um Fehlermeldungen in den App-Ansichten zu flashen.</span><span class="sxs-lookup"><span data-stu-id="d4761-131">You'll use this class to flash error messages in the app's views.</span></span>
+1. <span data-ttu-id="43a82-129">Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Modelle** , und wählen Sie **#a0 Klasse hinzufügen**aus. Nennen Sie die `Alert` Klasse, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-129">Right-click the **Models** folder in Solution Explorer and select **Add > Class...**. Name the class `Alert` and select **Add**.</span></span> <span data-ttu-id="43a82-130">Ersetzen Sie den gesamten Inhalt `Alert.cs` durch den folgenden Code.</span><span class="sxs-lookup"><span data-stu-id="43a82-130">Replace the entire contents of `Alert.cs` with the following code.</span></span>
 
     ```cs
     namespace graph_tutorial.Models
     {
+        // Used to flash error messages in the app's views.
         public class Alert
         {
             public const string AlertKey = "TempDataAlerts";
@@ -57,7 +64,7 @@
     }
     ```
 
-1. <span data-ttu-id="d4761-132">Öffnen Sie `./Views/Shared/_Layout.cshtml` die Datei, und ersetzen Sie den gesamten Inhalt durch den folgenden Code, um das globale Layout der APP zu aktualisieren.</span><span class="sxs-lookup"><span data-stu-id="d4761-132">Open the `./Views/Shared/_Layout.cshtml` file, and replace its entire contents with the following code to update the global layout of the app.</span></span>
+1. <span data-ttu-id="43a82-131">Öffnen Sie `./Views/Shared/_Layout.cshtml` die Datei, und ersetzen Sie den gesamten Inhalt durch den folgenden Code, um das globale Layout der APP zu aktualisieren.</span><span class="sxs-lookup"><span data-stu-id="43a82-131">Open the `./Views/Shared/_Layout.cshtml` file, and replace its entire contents with the following code to update the global layout of the app.</span></span>
 
     ```html
     @{
@@ -160,9 +167,10 @@
     </html>
     ```
 
-    <span data-ttu-id="d4761-133">Dieser Code fügt [Bootstrap](https://getbootstrap.com/) für einfaches Styling und [Font awesome](https://fontawesome.com/) für einige einfache Symbole hinzu.</span><span class="sxs-lookup"><span data-stu-id="d4761-133">This code adds [Bootstrap](https://getbootstrap.com/) for simple styling, and [Font Awesome](https://fontawesome.com/) for some simple icons.</span></span> <span data-ttu-id="d4761-134">Außerdem wird ein globales Layout mit einer Navigationsleiste definiert und die `Alert` Klasse verwendet, um Warnungen anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="d4761-134">It also defines a global layout with a nav bar, and uses the `Alert` class to display any alerts.</span></span>
+    > [!NOTE]
+    > <span data-ttu-id="43a82-132">Dieser Code fügt [Bootstrap](https://getbootstrap.com/) für einfaches Styling und [Font awesome](https://fontawesome.com/) für einige einfache Symbole hinzu.</span><span class="sxs-lookup"><span data-stu-id="43a82-132">This code adds [Bootstrap](https://getbootstrap.com/) for simple styling, and [Font Awesome](https://fontawesome.com/) for some simple icons.</span></span> <span data-ttu-id="43a82-133">Außerdem wird ein globales Layout mit einer Navigationsleiste definiert und die `Alert` Klasse verwendet, um Warnungen anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="43a82-133">It also defines a global layout with a nav bar, and uses the `Alert` class to display any alerts.</span></span>
 
-1. <span data-ttu-id="d4761-135">Öffnen `Content/Site.css` Sie den gesamten Inhalt, und ersetzen Sie ihn durch den folgenden Code.</span><span class="sxs-lookup"><span data-stu-id="d4761-135">Open `Content/Site.css` and replace its entire contents with the following code.</span></span>
+1. <span data-ttu-id="43a82-134">Öffnen `Content/Site.css` Sie den gesamten Inhalt, und ersetzen Sie ihn durch den folgenden Code.</span><span class="sxs-lookup"><span data-stu-id="43a82-134">Open `Content/Site.css` and replace its entire contents with the following code.</span></span>
 
     ```css
     body {
@@ -176,7 +184,7 @@
     }
     ```
 
-1. <span data-ttu-id="d4761-136">Öffnen Sie `Views/Home/index.cshtml` die Datei, und ersetzen Sie den Inhalt durch Folgendes.</span><span class="sxs-lookup"><span data-stu-id="d4761-136">Open the `Views/Home/index.cshtml` file and replace its contents with the following.</span></span>
+1. <span data-ttu-id="43a82-135">Öffnen Sie `Views/Home/index.cshtml` die Datei, und ersetzen Sie den Inhalt durch Folgendes.</span><span class="sxs-lookup"><span data-stu-id="43a82-135">Open the `Views/Home/index.cshtml` file and replace its contents with the following.</span></span>
 
     ```html
     @{
@@ -198,7 +206,7 @@
     </div>
     ```
 
-1. <span data-ttu-id="d4761-137">Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **#a0 Controller hinzufügen**aus.... Wählen Sie **MVC 5 Controller – leer** , und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-137">Right-click the **Controllers** folder in Solution Explorer and select **Add > Controller...**. Choose **MVC 5 Controller - Empty** and select **Add**.</span></span> <span data-ttu-id="d4761-138">Nennen Sie den `BaseController` Controller, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="d4761-138">Name the controller `BaseController` and select **Add**.</span></span> <span data-ttu-id="d4761-139">Ersetzen Sie den Inhalt von `BaseController.cs` durch den folgenden Code.</span><span class="sxs-lookup"><span data-stu-id="d4761-139">Replace the contents of `BaseController.cs` with the following code.</span></span>
+1. <span data-ttu-id="43a82-136">Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf den Ordner **Controller** , und wählen Sie **#a0 Controller hinzufügen**aus.... Wählen Sie **MVC 5 Controller – leer** , und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-136">Right-click the **Controllers** folder in Solution Explorer and select **Add > Controller...**. Choose **MVC 5 Controller - Empty** and select **Add**.</span></span> <span data-ttu-id="43a82-137">Nennen Sie den `BaseController` Controller, und wählen Sie **Hinzufügen**aus.</span><span class="sxs-lookup"><span data-stu-id="43a82-137">Name the controller `BaseController` and select **Add**.</span></span> <span data-ttu-id="43a82-138">Ersetzen Sie den Inhalt von `BaseController.cs` durch den folgenden Code.</span><span class="sxs-lookup"><span data-stu-id="43a82-138">Replace the contents of `BaseController.cs` with the following code.</span></span>
 
     ```cs
     using graph_tutorial.Models;
@@ -227,14 +235,12 @@
     }
     ```
 
-    <span data-ttu-id="d4761-140">Jeder Controller kann von dieser Basis Controllerklasse erben, um Zugriff auf die `Flash` Funktion zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="d4761-140">Any controller can inherit from this base controller class to gain access to the `Flash` function.</span></span> <span data-ttu-id="d4761-141">Aktualisieren Sie `HomeController` die-Klasse, `BaseController`um von zu erben.</span><span class="sxs-lookup"><span data-stu-id="d4761-141">Update the `HomeController` class to inherit from `BaseController`.</span></span>
-
-1. <span data-ttu-id="d4761-142">Öffnen `Controllers/HomeController.cs` Sie und ändern `public class HomeController : Controller` Sie die-Reihe in:</span><span class="sxs-lookup"><span data-stu-id="d4761-142">Open `Controllers/HomeController.cs` and change the `public class HomeController : Controller` line to:</span></span>
+1. <span data-ttu-id="43a82-139">Öffnen `Controllers/HomeController.cs` Sie und ändern `public class HomeController : Controller` Sie die-Reihe in:</span><span class="sxs-lookup"><span data-stu-id="43a82-139">Open `Controllers/HomeController.cs` and change the `public class HomeController : Controller` line to:</span></span>
 
     ```cs
     public class HomeController : BaseController
     ```
 
-1. <span data-ttu-id="d4761-143">Speichern Sie alle Änderungen, und starten Sie den Server neu.</span><span class="sxs-lookup"><span data-stu-id="d4761-143">Save all of your changes and restart the server.</span></span> <span data-ttu-id="d4761-144">Nun sollte die APP sehr unterschiedlich aussehen.</span><span class="sxs-lookup"><span data-stu-id="d4761-144">Now, the app should look very different.</span></span>
+1. <span data-ttu-id="43a82-140">Speichern Sie alle Änderungen, und starten Sie den Server neu.</span><span class="sxs-lookup"><span data-stu-id="43a82-140">Save all of your changes and restart the server.</span></span> <span data-ttu-id="43a82-141">Nun sollte die APP sehr unterschiedlich aussehen.</span><span class="sxs-lookup"><span data-stu-id="43a82-141">Now, the app should look very different.</span></span>
 
     ![Screenshot der neu gestalteten Startseite](./images/create-app-01.png)
