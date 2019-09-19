@@ -12,7 +12,7 @@ In dieser Übungseinheit erstellen Sie eine ASP.NET MVC-Anwendung, die mit Azure
 
 Das [Demos](./Demos) -Verzeichnis in diesem Repository enthält Kopien des Projekts, die dem Ausführen einzelner Abschnitte des Lernprogramms entsprechen. Wenn Sie lediglich einen bestimmten Abschnitt des Lernprogramms Demo ausführen möchten, können Sie mit der Version aus dem vorherigen Abschnitt beginnen.
 
-- [01-Create-App](Demos/01-create-app): abgeschlossen [Erstellen einer ASP.NET MVC](https://docs.microsoft.com/graph/training/aspnet-tutorial?tutorial-step=1) -Webanwendung
+- [01-Create-App](Demos/01-create-app): abgeschlossen [Erstellen einer ASP.NET MVC-Webanwendung](https://docs.microsoft.com/graph/training/aspnet-tutorial?tutorial-step=1)
 - [02-Add-Aad-auth](Demos/02-add-aad-auth): abgeschlossene [Add Azure AD-Authentifizierung](https://docs.microsoft.com/graph/training/aspnet-tutorial?tutorial-step=3)
 - [03-Add-MSGraph](Demos/03-add-msgraph): abgeschlossene [Abrufen von Kalenderdaten](https://docs.microsoft.com/graph/training/aspnet-tutorial?tutorial-step=4)
 
@@ -39,6 +39,7 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 | Version |        Datum        |                       Kommentare                       |
 | ------- | ------------------ | ---------------------------------------------------- |
+| 1,10    | 9. September 2019  | 2020Q1-Inhaltsaktualisierung                               |
 | 1.9     | 18. Juni 2019      | Readme in aktualisierte Screencast-Aufzeichnung aktualisiert     |
 | 1,8     | 29. Mai 2018       | 2019Q4-Inhaltsaktualisierung                               |
 | 1.7     | 4. April 2018      | 2019Q3-Inhaltsaktualisierung                               |
@@ -52,6 +53,6 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 ## <a name="disclaimer"></a>Verzichtserklärung
 
-**Dieser Code wird ohne __ jegliche ausdrückliche oder implizite Gewährleistung bereitgestellt, einschließlich impliziter Garantien für die Eignung für einen bestimmten Zweck, die Marktgängigkeit oder die Nichtverletzung.**
+**Dieser Code wird ohne jegliche ausdrückliche oder implizite _Gewährleistung bereit_ gestellt, einschließlich impliziter Garantien für die Eignung für einen bestimmten Zweck, die Marktgängigkeit oder die Nichtverletzung.**
 
 <img src="https://telemetry.sharepointpnp.com/msgraph-training-aspnetmvcapp" />

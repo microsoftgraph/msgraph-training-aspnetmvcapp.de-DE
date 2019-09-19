@@ -2,7 +2,7 @@
 
 In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung, um die Authentifizierung mit Azure AD zu unterstützen. Dies ist erforderlich, um das erforderliche OAuth-Zugriffstoken zu erhalten, um die Microsoft Graph-API aufzurufen. In diesem Schritt werden Sie die OWIN-Middleware und die Bibliothek der [Microsoft-Authentifizierungsbibliothek](https://www.nuget.org/packages/Microsoft.Identity.Client/) in die Anwendung integrieren.
 
-1. Klicken Sie mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt im Projektmappen-Explorer, und wählen Sie **#a0 neues Element hinzufügen aus...**. Wählen **** Sie Webkonfigurationsdatei aus, benennen Sie `PrivateSettings.config` die Datei, und wählen Sie **Hinzufügen**aus. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
+1. Klicken Sie mit der rechten Maustaste auf das **Graph-Tutorial-** Projekt im Projektmappen-Explorer, und wählen Sie **#a0 neues Element hinzufügen aus...**. Wählen Sie **Webkonfigurationsdatei**aus, benennen Sie `PrivateSettings.config` die Datei, und wählen Sie **Hinzufügen**aus. Ersetzen sie den gesamten Inhalt durch den folgenden Code.
 
     ```xml
     <appSettings>
@@ -60,39 +60,39 @@ Beginnen Sie mit der Initialisierung der OWIN-Middleware, um Azure AD-Authentifi
                 app.UseCookieAuthentication(new CookieAuthenticationOptions());
 
                 app.UseOpenIdConnectAuthentication(
-                  new OpenIdConnectAuthenticationOptions
-                  {
-                      ClientId = appId,
-                      Authority = "https://login.microsoftonline.com/common/v2.0",
-                      Scope = $"openid email profile offline_access {graphScopes}",
-                      RedirectUri = redirectUri,
-                      PostLogoutRedirectUri = redirectUri,
-                      TokenValidationParameters = new TokenValidationParameters
-                      {
-                          // For demo purposes only, see below
-                          ValidateIssuer = false
+                    new OpenIdConnectAuthenticationOptions
+                    {
+                        ClientId = appId,
+                        Authority = "https://login.microsoftonline.com/common/v2.0",
+                        Scope = $"openid email profile offline_access {graphScopes}",
+                        RedirectUri = redirectUri,
+                        PostLogoutRedirectUri = redirectUri,
+                        TokenValidationParameters = new TokenValidationParameters
+                        {
+                            // For demo purposes only, see below
+                            ValidateIssuer = false
 
-                          // In a real multi-tenant app, you would add logic to determine whether the
-                          // issuer was from an authorized tenant
-                          //ValidateIssuer = true,
-                          //IssuerValidator = (issuer, token, tvp) =>
-                          //{
-                          //  if (MyCustomTenantValidation(issuer))
-                          //  {
-                          //    return issuer;
-                          //  }
-                          //  else
-                          //  {
-                          //    throw new SecurityTokenInvalidIssuerException("Invalid issuer");
-                          //  }
-                          //}
-                      },
-                      Notifications = new OpenIdConnectAuthenticationNotifications
-                      {
-                          AuthenticationFailed = OnAuthenticationFailedAsync,
-                          AuthorizationCodeReceived = OnAuthorizationCodeReceivedAsync
-                      }
-                  }
+                            // In a real multi-tenant app, you would add logic to determine whether the
+                            // issuer was from an authorized tenant
+                            //ValidateIssuer = true,
+                            //IssuerValidator = (issuer, token, tvp) =>
+                            //{
+                            //  if (MyCustomTenantValidation(issuer))
+                            //  {
+                            //    return issuer;
+                            //  }
+                            //  else
+                            //  {
+                            //    throw new SecurityTokenInvalidIssuerException("Invalid issuer");
+                            //  }
+                            //}
+                        },
+                        Notifications = new OpenIdConnectAuthenticationNotifications
+                        {
+                            AuthenticationFailed = OnAuthenticationFailedAsync,
+                            AuthorizationCodeReceived = OnAuthorizationCodeReceivedAsync
+                        }
+                    }
                 );
             }
 
@@ -414,7 +414,7 @@ Nachdem Sie nun Token erhalten können, ist es an der Zeit, eine Möglichkeit zu
                     var userObjectId = user.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value ??
                         user.FindFirst("oid").Value;
 
-                    var userTenantId = user.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value ??
+                    var userTenantId = user.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value ??
                         user.FindFirst("tid").Value;
 
                     if (!string.IsNullOrEmpty(userObjectId) && !string.IsNullOrEmpty(userTenantId))
@@ -429,10 +429,11 @@ Nachdem Sie nun Token erhalten können, ist es an der Zeit, eine Möglichkeit zu
     }
     ```
 
-1. Fügen Sie die `using` folgende Anweisung am Anfang der `App_Start/Startup.Auth.cs` Datei hinzu.
+1. Fügen Sie am `using` Anfang der `App_Start/Startup.Auth.cs` Datei die folgenden Anweisungen hinzu.
 
     ```cs
     using graph_tutorial.TokenStorage;
+    using System.Security.Claims;
     ```
 
 1. Ersetzen Sie die vorhandene `OnAuthorizationCodeReceivedAsync`-Funktion durch Folgendes.
@@ -557,7 +558,7 @@ Nachdem Sie nun Token erhalten können, ist es an der Zeit, eine Möglichkeit zu
 
     ![Ein Screenshot der Startseite nach der Anmeldung](./images/add-aad-auth-01.png)
 
-1. Klicken Sie in der oberen rechten Ecke auf den Avatar des Benutzers **** , um auf den Abmeldelink zuzugreifen. Durch **** klicken auf Abmelden wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite zurück.
+1. Klicken Sie in der oberen rechten Ecke auf den Avatar des Benutzers, um auf den **Abmelde** Link zuzugreifen. Durch Klicken auf **Abmelden** wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite zurück.
 
     ![Screenshot des Dropdownmenüs mit dem Link zum Abmelden](./images/add-aad-auth-02.png)
 
