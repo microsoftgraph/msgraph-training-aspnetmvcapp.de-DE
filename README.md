@@ -39,12 +39,13 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 | Version |        Datum        |                       Kommentare                       |
 | ------- | ------------------ | ---------------------------------------------------- |
+| 1,11    | 9. Dezember 2019   | 2020Q2-Inhaltsaktualisierung                               |
 | 1,10    | 9. September 2019  | 2020Q1-Inhaltsaktualisierung                               |
 | 1.9     | 18. Juni 2019      | Readme in aktualisierte Screencast-Aufzeichnung aktualisiert     |
 | 1,8     | 29. Mai 2018       | 2019Q4-Inhaltsaktualisierung                               |
 | 1.7     | 4. April 2018      | 2019Q3-Inhaltsaktualisierung                               |
 | 1.6     | 18. Dezember 2018  | 2019Q2-Inhaltsaktualisierung                               |
-| 1.5     | 27. November 2018  | Onboarding zu docs.Microsoft.com/Graph                |
+| 1,5     | 27. November 2018  | Onboarding zu docs.Microsoft.com/Graph                |
 | 1.4     | 12. September 2018 | 2019Q1-Inhaltsaktualisierung                               |
 | 1.3     | 24. August 2018    | Module wurden für Konsistenz mit anderen Schulungen überarbeitet. |
 | 1.2     | 28. Juni 2018      | Screencast hinzugefügt.                                    |
